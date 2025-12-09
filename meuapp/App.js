@@ -1,18 +1,28 @@
 import { useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
 
 export default function App() {
 	const [name, setName] = useState('');
+	const [input, setInput] = useState('');
+
+	function entrar() {
+		if (!input) {
+			alert('Por favor, digite seu nome!');
+			setName('');
+			return;
+		}
+		setName(`Bem vindo ${input}`);
+	}
 
 	return (
 		<View style={styles.container}>
 			<TextInput
 				style={styles.input}
 				placeholder="Digite seu nome"
-				onChangeText={(text) =>
-					setName(text ? `Bem vindo ${text}` : '')
-				}
+				onChangeText={(text) => setInput(text)}
 			/>
+
+			<Button title="Entrar" onPress={entrar} />
 
 			<Text style={styles.text}>{name}</Text>
 		</View>
