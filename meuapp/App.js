@@ -1,22 +1,26 @@
-import { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 
-export default class App extends Component {
-	render() {
-		return (
-			<View>
-				<Text>Hello, World!</Text>
-				<Text style={{ color: '#ff0000', fontSize: 25, margin: 15 }}>
-					Olá, Mundo!
-				</Text>
+export default function App() {
+	let name = 'Helio';
+	let img = 'http://sujeitoprogramador.com/reactlogo.png';
 
-				<Image
-					source={{
-						uri: 'http://sujeitoprogramador.com/reactlogo.png',
-					}}
-					style={{ width: 200, height: 200 }}
-				/>
-			</View>
-		);
-	}
+	return (
+		<View>
+			<Text>Hello, World!</Text>
+			<Text style={{ color: '#ff0000', fontSize: 25, margin: 15 }}>
+				Olá, Mundo!
+			</Text>
+
+			<Image
+				source={{
+					uri: img,
+				}}
+				style={{ width: 200, height: 200 }}
+			/>
+
+			<Text style={{ fontSize: 22 }}>
+        {name}
+      </Text>
+		</View>
+	);
 }
