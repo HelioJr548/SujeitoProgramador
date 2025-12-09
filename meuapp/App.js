@@ -4,16 +4,14 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 export default function App() {
 	const [name, setName] = useState('');
 
-	function getName(text) {
-		setName(text ? `Bem vindo ${text}` : '');
-	}
-
 	return (
 		<View style={styles.container}>
 			<TextInput
 				style={styles.input}
 				placeholder="Digite seu nome"
-				onChangeText={(text) => getName(text)}
+				onChangeText={(text) =>
+					setName(text ? `Bem vindo ${text}` : '')
+				}
 			/>
 
 			<Text style={styles.text}>{name}</Text>
