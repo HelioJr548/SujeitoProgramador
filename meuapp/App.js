@@ -1,9 +1,6 @@
 import { View, Text, Image } from 'react-native';
 
 export default function App() {
-	let name = 'Helio';
-	let img = 'http://sujeitoprogramador.com/reactlogo.png';
-
 	return (
 		<View>
 			<Text>Hello, World!</Text>
@@ -11,16 +8,23 @@ export default function App() {
 				Olá, Mundo!
 			</Text>
 
+			<Logo largura={350} altura={350} fulano={'Helio'} />
+		</View>
+	);
+}
+
+function Logo(props) {
+	let img = 'http://sujeitoprogramador.com/reactlogo.png';
+
+	return (
+		<View>
 			<Image
 				source={{
 					uri: img,
 				}}
-				style={{ width: 200, height: 200 }}
+				style={{ width: props.largura, height: props.altura }}
 			/>
-
-			<Text style={{ fontSize: 22 }}>
-        {name}
-      </Text>
+			<Text> {props.fulano} </Text>
 		</View>
 	);
 }
