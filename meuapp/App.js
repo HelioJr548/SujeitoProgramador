@@ -1,32 +1,13 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 
 export default function App() {
 	return (
-		<View style={styles.area}>
-			
-
-			<Text style={[styles.title, styles.centerText]}>Helio</Text>
-			<Text style={styles.title}>Sujeito Programador</Text>
-			<Text style={styles.subTitle}>Sou um texto 3</Text>
+		<View style={{ paddingTop: 40, backgroundColor: 'blue', flex: 1 }}>
+			<View style={{ height: 65, backgroundColor: '#333' }}></View>
+			<View style={{ flex: 1, backgroundColor: '#ddd', }}></View>
+			<View style={{ height: 65, backgroundColor: '#333', }}></View>
 		</View>
 	);
 };
 
-const styles = StyleSheet.create({
-	area:{
-		marginTop: 50
-	},
-	title: {
-		fontSize: 20,
-		color: '#ff0000'
-	},
-	subTitle: {
-		color: '#00FF00',
-		fontSize: 17,
-		marginTop: 15,
-	},
-	centerText: {
-		textAlign: 'center'
-	}
-}) 
