@@ -5,7 +5,7 @@ export default function App() {
 	const [name, setName] = useState('');
 
 	function getName(text) {
-		text.length > 0 ? setName(`Bem vindo ${text}`) : setName('');
+		setName(text ? `Bem vindo ${text}` : '');
 	}
 
 	return (
