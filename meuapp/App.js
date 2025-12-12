@@ -1,30 +1,15 @@
-import { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 
 export default function App() {
-	const [name, setName] = useState('');
-	const [input, setInput] = useState('');
-
-	function entrar() {
-		if (!input) {
-			alert('Por favor, digite seu nome!');
-			setName('');
-			return;
-		}
-		setName(`Bem vindo ${input}`);
-	}
-
 	return (
 		<View style={styles.container}>
-			<TextInput
-				style={styles.input}
-				placeholder="Digite seu nome"
-				onChangeText={(text) => setInput(text)}
-			/>
-
-			<Button title="Entrar" onPress={entrar} />
-
-			<Text style={styles.text}>{name}</Text>
+			<ScrollView showsVerticalScrollIndicator={false}>
+				<View style={styles.box1} />
+				<View style={styles.box2} />
+				<View style={styles.box3} />
+				<View style={styles.box4} />
+				<View style={styles.box5} />
+			</ScrollView>
 		</View>
 	);
 }
@@ -34,16 +19,24 @@ const styles = StyleSheet.create({
 		paddingTop: 40,
 		flex: 1,
 	},
-	input: {
-		height: 45,
-		borderWidth: 1,
-		margin: 10,
-		padding: 10,
-		fontSize: 20,
-		borderRadius: 10,
+	box1: {
+		height: 250,
+		backgroundColor: 'blue',
 	},
-	text: {
-		textAlign: 'center',
-		fontSize: 25,
+	box2: {
+		height: 250,
+		backgroundColor: 'red',
+	},
+	box3: {
+		height: 250,
+		backgroundColor: 'green',
+	},
+	box4: {
+		height: 250,
+		backgroundColor: 'purple',
+	},
+	box5: {
+		height: 250,
+		backgroundColor: 'orange',
 	},
 });
