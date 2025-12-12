@@ -1,66 +1,71 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // ✅ Adicionado useEffect
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-let timer = null;
-let ss = 0;
-let mm = 0;
-let hh = 0;
-
 export default function App() {
-	const [time, setTime] = useState(0);
+	const [time, setTime] = useState('00:00:00'); // ✅ String inicial correta
 	const [btn, setBtn] = useState('INICIAR');
 	const [lastTime, setLastTime] = useState(null);
+	const [isRunning, setIsRunning] = useState(false); // ✅ Controla timer
+
+	// ✅ useEffect gerencia o timer corretamente
+	useEffect(() => {
+		let interval = null;
+
+		if (isRunning) {
+			interval = setInterval(() => {
+				setTime((prev) => {
+					const [hh, mm, ss] = prev.split(':').map(Number);
+					let newSs = ss + 1;
+					let newMm = mm;
+					let newHh = hh;
+
+					if (newSs >= 60) {
+						newSs = 0;
+						newMm++;
+					}
+					if (newMm >= 60) {
+						newMm = 0;
+						newHh++;
+					}
+
+					return `${newHh.toString().padStart(2, '0')}:${newMm
+						.toString()
+						.padStart(2, '0')}:${newSs
+						.toString()
+						.padStart(2, '0')}`;
+				});
+			}, 100);
+		}
+
+		return () => {
+			if (interval) clearInterval(interval); // ✅ Cleanup
+		};
+	}, [isRunning]);
 
 	const start = () => {
-		if (timer !== null) {
-			// PAUSAR o timer
-			clearInterval(timer);
-			timer = null;
-			setBtn('INICIAR');
-		} else {
-			// iniciar o timer
-			timer = setInterval(() => {
-				ss++;
-				if (ss == 60) {
-					ss = 0;
-					mm++;
-				}
-				if (mm == 60) {
-					mm = 0;
-					hh++;
-				}
-
-				let format =
-					(hh < 10 ? `0${hh}` : hh) +
-					':' +
-					(mm < 10 ? `0${mm}` : mm) +
-					':' +
-					(ss < 10 ? `0${ss}` : ss);
-				setTime(format);
-			}, 100);
-			setBtn('PAUSAR');
-		}
+		setIsRunning(!isRunning);
+		setBtn(isRunning ? 'INICIAR' : 'PAUSAR');
 	};
+
 	const clear = () => {
-		if (timer !== null) {
-			clearInterval(timer);
-			timer = null;
+		setIsRunning(false);
+
+		// ✅ Só salva se NÃO estiver zerado
+		if (time !== '00:00:00') {
+			setLastTime(time);
 		}
 
-		setLastTime(time);
 		setTime('00:00:00');
-		ss = 0;
-		mm = 0;
-		hh = 0;
 		setBtn('INICIAR');
 	};
+
 	return (
 		<View style={styles.container}>
 			<StatusBar style="auto" />
 			<Image source={require('./src/crono.png')} />
-
-			<Text style={styles.timer}>{time ? time : '00:00:00'}</Text>
+			<Text style={styles.timer}>{time}</Text>{' '}
+			{/* ✅ Sem ternary desnecessário */}
 			<View style={styles.btnArea}>
 				<CustomPressable
 					text={btn}
@@ -75,16 +80,16 @@ export default function App() {
 					onPress={clear}
 				/>
 			</View>
-
 			<View style={styles.lastTimeArea}>
 				<Text style={styles.lastTimeTxt}>
-					{lastTime ? `Ultimo tempo ${lastTime}` : ''}
+					{lastTime ? `Último tempo: ${lastTime}` : ''}
 				</Text>
 			</View>
 		</View>
 	);
 }
 
+// CustomPressable e styles permanecem iguais...
 const CustomPressable = ({ text, onPress, styleBtn, styleBtnTxt }) => {
 	return (
 		<Pressable
