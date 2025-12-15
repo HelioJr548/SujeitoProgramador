@@ -3,7 +3,18 @@ import { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
 export default function App() {
-	const [carroSelecionado, setCarroSelecionado] = useState();
+	const [carroSelecionado, setCarroSelecionado] = useState(0);
+	const [carros, setCarros] = useState([
+		{ key: 1, nome: 'Ford', valor: 62.0 },
+		{ key: 2, nome: 'Chevrolet', valor: 58.0 },
+		{ key: 3, nome: 'Honda', valor: 70.0 },
+		{ key: 4, nome: 'Hyundai', valor: 55.0 },
+		{ key: 5, nome: 'Volkswagen', valor: 68.0 },
+	]);
+
+	let carrosItem = carros.map((v, k) => {
+		return <Picker.Item key={k} value={k} label={v.nome} />;
+	});
 
 	return (
 		<View style={styles.container}>
@@ -13,12 +24,15 @@ export default function App() {
 					setCarroSelecionado(itemValue)
 				}
 			>
-				<Picker.Item key={0} value={0} label="Ford" />
-				<Picker.Item key={1} value={1} label="Chevrolet" />
-				<Picker.Item key={2} value={2} label="Fiat" />
+				{carrosItem}
 			</Picker>
 
-			<Text style={styles.carros}>Carro selecionado: {carroSelecionado}</Text>
+			<Text style={styles.carros}>
+				Carro selecionado: {carros[carroSelecionado].nome}
+			</Text>
+			<Text style={styles.carros}>
+				Valor: {carros[carroSelecionado].valor.toFixed(3)}
+			</Text>
 		</View>
 	);
 }
