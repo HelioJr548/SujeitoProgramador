@@ -1,43 +1,24 @@
+import { Picker } from '@react-native-picker/picker';
 import { useState } from 'react';
-import { View, StyleSheet, FlatList, Text, Pressable } from 'react-native';
-
-import Person from './src/Person';
+import { View, StyleSheet, Text } from 'react-native';
 
 export default function App() {
-	const [feed, setFeed] = useState([
-		{ id: '1', name: 'Helio', age: 22, email: 'hjr@' },
-		{ id: '2', name: 'Maria', age: 19, email: 'maria@' },
-		{ id: '3', name: 'João', age: 25, email: 'joao@' },
-		{ id: '4', name: 'Ana', age: 21, email: 'ana@' },
-		{ id: '5', name: 'Carlos', age: 23, email: 'carlos@' },
-	]);
-
-	const addPerson = () => {
-		const newPerson = {
-			id: Date.now().toString(), // ID único
-			name: `Pessoa ${feed.length + 1}`,
-			age: 20 + Math.floor(Math.random() * 20),
-			email: `pessoa${feed.length + 1}@exemplo.com`,
-		};
-		setFeed([...feed, newPerson]); // ✅ Atualiza tela!
-	};
+	const [carroSelecionado, setCarroSelecionado] = useState();
 
 	return (
 		<View style={styles.container}>
-			<Pressable style={styles.addButton} onPress={addPerson}>
-				<Text style={styles.addButtonText}>➕ Adicionar Pessoa</Text>
-			</Pressable>
+			<Picker
+				selectedValue={carroSelecionado}
+				onValueChange={(itemValue, itemIndex) =>
+					setCarroSelecionado(itemValue)
+				}
+			>
+				<Picker.Item key={0} value={0} label="Ford" />
+				<Picker.Item key={1} value={1} label="Chevrolet" />
+				<Picker.Item key={2} value={2} label="Fiat" />
+			</Picker>
 
-			<FlatList
-				data={feed}
-				renderItem={({ item }) => <Person data={item} />}
-				// ✅ keyExtractor: DIZ AO REACT QUAL ITEM MUDOU
-				// SEM ELE: React re-renderiza TODOS os itens sempre
-				// COM ELE: React atualiza só o que mudou (rápido!)
-				// USAR SEMPRE quando cada item tem ID único
-				keyExtractor={(item) => item.id}
-				contentContainerStyle={styles.listContainer}
-			/>
+			<Text style={styles.carros}>Carro selecionado: {carroSelecionado}</Text>
 		</View>
 	);
 }
@@ -48,19 +29,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#f5f5f5',
 	},
-	addButton: {
-		backgroundColor: '#4CAF50',
-		padding: 15,
-		margin: 20,
-		borderRadius: 10,
-		alignItems: 'center',
-	},
-	addButtonText: {
-		color: 'white',
-		fontSize: 18,
-		fontWeight: 'bold',
-	},
-	listContainer: {
-		padding: 20,
+	carros: {
+		fontSize: 20,
+		textAlign: 'center',
+		marginTop: 20,
 	},
 });
