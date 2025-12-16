@@ -6,11 +6,7 @@ export default function App() {
 
 	useEffect(() => {
 		console.log('MONTOU');
-
-		setTimeout(() => {
-			setContador(350);
-		}, 2000);
-	}, []); // [] vazio quer dizer que ira chamar a função assim que o app for montado em tela (uma unica vez)
+	}, [contador]); // monitora o contador, a cada alteração dispara a ação do useEffect
 
 	return (
 		<View style={styles.container}>
