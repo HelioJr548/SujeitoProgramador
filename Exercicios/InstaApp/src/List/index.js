@@ -1,6 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-export default function List({ data }) {
+export default function List({ data, onLike }) {
 	const loadIcon = (likeada) => {
 		return likeada
 			? require('../img/likeada.png')
@@ -35,7 +35,7 @@ export default function List({ data }) {
 			/>
 
 			<View style={styles.areaBtn}>
-				<Pressable>
+				<Pressable onPress={onLike}>
 					<Image
 						source={loadIcon(data.likeada)}
 						style={styles.icons}
@@ -59,8 +59,10 @@ export default function List({ data }) {
 
 			{showLikes(data.likers)}
 
-			<Text style={styles.nomeRodape}>{data.name}</Text>
-			<Text style={styles.descRodape}>{data.descricao}</Text>
+			<View style={styles.areaBtn}>
+				<Text style={styles.nomeRodape}>{data.name}</Text>
+				<Text style={styles.descRodape}>{data.descricao}</Text>
+			</View>
 		</View>
 	);
 }
@@ -88,6 +90,7 @@ const styles = StyleSheet.create({
 	},
 	areaBtn: {
 		flexDirection: 'row',
+		alignItems: 'baseline',
 		padding: 5,
 		gap: 5,
 	},
@@ -106,7 +109,8 @@ const styles = StyleSheet.create({
 	},
 
 	descRodape: {
-		fontSize: 15,
-		paddingLeft: 5,
+		fontSize: 14,
+		fontStyle: 'italic',
+		width: '100%',
 	},
 });

@@ -63,6 +63,22 @@ export default function App() {
 		},
 	]);
 
+	function handleLike(postId) {
+		setFeed((prevFeed) =>
+			prevFeed.map((post) =>
+				post.id === postId
+					? {
+							...post,
+							likeada: !post.likeada,
+							likers: post.likeada
+								? post.likers - 1
+								: post.likers + 1,
+					  }
+					: post
+			)
+		);
+	}
+
 	return (
 		<View style={styles.container}>
 			<StatusBar style="auto" />
@@ -72,7 +88,9 @@ export default function App() {
 				showsHorizontalScrollIndicator={false}
 				data={feed}
 				keyExtractor={(item) => item.id}
-				renderItem={({ item }) => <List data={item} />}
+				renderItem={({ item }) => (
+					<List data={item} onLike={() => handleLike(item.id)} />
+				)}
 			/>
 		</View>
 	);
