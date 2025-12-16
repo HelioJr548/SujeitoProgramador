@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { View, StyleSheet, Text, TextInput, Pressable } from 'react-native';
 
 export default function App() {
@@ -20,6 +20,12 @@ export default function App() {
 		setInput('');
 	};
 
+	// const letrasNome = nome.length
+	const letrasNome = useMemo(() => {
+		console.log('Pegando qntd de letras');
+		return nome.length;
+	}, [nome]);
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.viewInput}>
@@ -35,6 +41,7 @@ export default function App() {
 			</View>
 
 			<Text style={styles.nome}>{nome}</Text>
+			<Text style={styles.nome}>Possui: {letrasNome} letras</Text>
 		</View>
 	);
 }
