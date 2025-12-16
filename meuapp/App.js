@@ -1,10 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { View, StyleSheet, Text, TextInput, Pressable } from 'react-native';
 
 export default function App() {
 	const [input, setInput] = useState('');
 	const [nome, setNome] = useState('');
+
+	const inputRef = useRef(null);
 
 	useEffect(() => {
 		const loadData = async () => {
@@ -20,6 +22,13 @@ export default function App() {
 		setInput('');
 	};
 
+	const chamarInput = () => {
+		// inputRef.current.focus()
+		inputRef.current.clear();
+
+		// console.log(inputRef.current.isFocused());
+	};
+
 	// const letrasNome = nome.length
 	const letrasNome = useMemo(() => {
 		console.log('Pegando qntd de letras');
@@ -33,6 +42,7 @@ export default function App() {
 					style={styles.input}
 					value={input}
 					onChangeText={(text) => setInput(text)}
+					ref={inputRef}
 				/>
 
 				<Pressable onPress={gravaNome}>
@@ -42,6 +52,10 @@ export default function App() {
 
 			<Text style={styles.nome}>{nome}</Text>
 			<Text style={styles.nome}>Possui: {letrasNome} letras</Text>
+
+			<Pressable onPress={chamarInput}>
+				<Text style={styles.botao}>Chamar Input</Text>
+			</Pressable>
 		</View>
 	);
 }
