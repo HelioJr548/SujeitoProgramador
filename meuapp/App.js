@@ -1,44 +1,70 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, Switch, Button } from 'react-native';
+import { View, StyleSheet, Text, TextInput, Pressable } from 'react-native';
 
 export default function App() {
-	const [contador, setContador] = useState(0);
-	const [renderizado, setRenderizado] = useState(true);
+	const [input, setInput] = useState('');
+	const [nome, setNome] = useState('');
 
 	useEffect(() => {
-		console.log('MONTOU');
-	}, [contador]); // monitora o contador, a cada alteração dispara a ação do useEffect
+		const loadData = async () => {
+			await AsyncStorage.getItem('@nome').then((value) => setNome(value));
+		};
+
+		loadData();
+	}, []);
+
+	const gravaNome = async () => {
+		await AsyncStorage.setItem('@nome', input);
+		setNome(input);
+		setInput('');
+	};
 
 	return (
 		<View style={styles.container}>
-			<Button title="➕" onPress={() => setContador(contador + 1)} />
-			<Text style={{ fontSize: 30 }}>{contador}</Text>
-			<Button title="➖" onPress={() => setContador(contador - 1)} />
+			<View style={styles.viewInput}>
+				<TextInput
+					style={styles.input}
+					value={input}
+					onChangeText={(text) => setInput(text)}
+				/>
 
-			<Button
-				title="MOSTRAR NOME"
-				onPress={() => setRenderizado(!renderizado)}
-			/>
+				<Pressable onPress={gravaNome}>
+					<Text style={styles.botao}>➕</Text>
+				</Pressable>
+			</View>
 
-			{/* caso renderizado = TRUE renderiza <Nome/> */}
-			{renderizado && <Nome />}
+			<Text style={styles.nome}>{nome}</Text>
 		</View>
 	);
 }
-
-const Nome = () => {
-	useEffect(() => {
-		console.log('COMPONENTE NOME FOI MONTADO NA TELA!');
-
-		return () => console.log('COMPONENTE DESMONTADO'); // chamado ao componente ser desmontado (sair da tela)
-	}, []);
-	return <Text>Helio</Text>;
-};
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	viewInput: {
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+	input: {
+		width: '80%',
+		height: 40,
+		borderColor: '#000',
+		borderWidth: 1,
+		padding: 10,
+	},
+	botao: {
+		backgroundColor: '#222',
+		color: '#fff',
+		height: 40,
+		padding: 10,
+		marginLeft: 4,
+	},
+	nome: {
+		marginTop: 20,
+		fontSize: 30,
 	},
 });
