@@ -1,27 +1,30 @@
-import { useState } from 'react';
-import { View, StyleSheet, Text, Switch } from 'react-native';
+import { useEffect, useState } from 'react';
+import { View, StyleSheet, Text, Switch, Button } from 'react-native';
 
 export default function App() {
-	const [status, setStatus] = useState(false);
+	const [contador, setContador] = useState(0);
+
+	useEffect(() => {
+		console.log('MONTOU');
+
+		setTimeout(() => {
+			setContador(350);
+		}, 2000);
+	}, []); // [] vazio quer dizer que ira chamar a função assim que o app for montado em tela (uma unica vez)
 
 	return (
 		<View style={styles.container}>
-			<Switch
-				value={status}
-				onValueChange={(value) => setStatus(value)}
-				trackColor={{ false: '#121212', true: '#00ff00' }}
-				thumbColor={status ? '#121212' : '#f4f4f4'}
-			/>
-
-			<Text>Status: {status ? 'On' : 'Off'}</Text>
+			<Button title="➕" onPress={() => setContador(contador + 1)} />
+			<Text style={{ fontSize: 30 }}>{contador}</Text>
+			<Button title="➖" onPress={() => setContador(contador - 1)} />
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		paddingTop: 40,
 		flex: 1,
-		backgroundColor: '#f5f5f5',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 });
