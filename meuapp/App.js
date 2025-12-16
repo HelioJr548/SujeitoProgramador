@@ -1,30 +1,30 @@
-import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './src/pages/Home';
+import About from './src/pages/About';
 
-// https://icons.expo.fyi/Index --> Site com todos os icons para o Expo
-import Ionicons from '@expo/vector-icons/Ionicons';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+const Stack = createNativeStackNavigator();
 
-export default function App() {
+const App = () => {
 	return (
-		<View style={styles.container}>
-			<Ionicons name="checkmark-circle" size={45} color="green" />
-
-			<FontAwesome.Button // https://docs.expo.dev/guides/icons/#button-component
-				name="facebook"
-				backgroundColor="hsla(221, 44%, 41%, 1.00)"
-				// onPress={loginWithFacebook}
-			>
-				Login with Facebook
-			</FontAwesome.Button>
-		</View>
+		<NavigationContainer>
+			<Stack.Navigator>
+				<Stack.Screen
+					name="Home"
+					component={Home}
+					options={{
+						title: 'Tela inicio',
+						headerStyle: { backgroundColor: '#121212' },
+						headerTintColor: '#fff',
+						headerShown: false
+					}}
+				/>
+				<Stack.Screen name="About" component={About} options={{
+					title: 'Sobre'
+				}}/>
+			</Stack.Navigator>
+		</NavigationContainer>
 	);
-}
+};
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-});
+export default App;
