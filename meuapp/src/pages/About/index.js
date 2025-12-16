@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-const About = () => {
+const About = ({route}) => {
     return (
         <View style={styles.container}>
             <Text>Tela About</Text>
+            <Text>{route.params?.nome}</Text>
+            <Text>{route.params?.email}</Text>
         </View>
     );
 };

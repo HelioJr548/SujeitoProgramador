@@ -4,15 +4,14 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 const Home = () => {
 	const navigation = useNavigation();
 
+	const navegaSobre = () => {
+		navigation.navigate('About', { nome: 'Helio', email: 'hjr@.com' });
+	};
+
 	return (
 		<View style={styles.container}>
 			<Text>Tela HOME</Text>
-			<Button
-				title="Ir para Sobre"
-				onPress={() => {
-					navigation.navigate('About');
-				}}
-			/>
+			<Button title="Ir para Sobre" onPress={navegaSobre} />
 		</View>
 	);
 };
