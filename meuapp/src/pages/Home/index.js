@@ -5,7 +5,7 @@ const Home = () => {
 	const navigation = useNavigation();
 
 	const navegaSobre = () => {
-		navigation.navigate('About', { nome: 'Helio', email: 'hjr@.com' });
+		navigation.navigate('About');
 	};
 
 	return (
