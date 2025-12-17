@@ -4,20 +4,18 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import StackRoutes from './stackRoutes';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
+import CustomDrawer from '../components/CustomDrawer';
 
 const Drawer = createDrawerNavigator();
 
 export default function Routes() {
 	return (
 		<Drawer.Navigator
+			drawerContent={CustomDrawer}
 			screenOptions={{
-				// headerShown: false,
-				drawerStyle: {
-					backgroundColor: 'hsla(0, 0%, 7%, 1.00)',
-				},
-				drawerActiveBackgroundColor: 'hsla(239, 53%, 49%, 1.00)',
+				drawerActiveBackgroundColor: '#00dae4',
 				drawerActiveTintColor: 'hsla(0, 0%, 100%, 1.00)',
-				drawerInactiveBackgroundColor: 'hsla(0, 0%, 80%, 1.00)',
+				drawerInactiveBackgroundColor: '#f1f1f1',
 				drawerInactiveTintColor: 'hsla(0, 0%, 0%, 1.00)',
 			}}
 		>
