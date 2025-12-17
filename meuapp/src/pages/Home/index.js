@@ -4,14 +4,15 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 const Home = () => {
 	const navigation = useNavigation();
 
-	const navegaSobre = () => {
-		navigation.navigate('About');
+	const navegaDetalhes = () => {
+		// Navega para rota "Details" definida no StackRoutes
+		navigation.navigate('Details'); // ← CHAMA a "rota" definida no StackRoutes
 	};
 
 	return (
 		<View style={styles.container}>
 			<Text>Tela HOME</Text>
-			<Button title="Ir para Sobre" onPress={navegaSobre} />
+			<Button title="Ir para Detalhes" onPress={navegaDetalhes} />
 		</View>
 	);
 };
