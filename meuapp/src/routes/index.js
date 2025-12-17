@@ -11,7 +11,14 @@ export default function Routes() {
 	return (
 		<Drawer.Navigator
 			screenOptions={{
-				headerShown: false,
+				// headerShown: false,
+				drawerStyle: {
+					backgroundColor: 'hsla(0, 0%, 7%, 1.00)',
+				},
+				drawerActiveBackgroundColor: 'hsla(239, 53%, 49%, 1.00)',
+				drawerActiveTintColor: 'hsla(0, 0%, 100%, 1.00)',
+				drawerInactiveBackgroundColor: 'hsla(0, 0%, 80%, 1.00)',
+				drawerInactiveTintColor: 'hsla(0, 0%, 0%, 1.00)',
 			}}
 		>
 			<Drawer.Screen name="HomeStack" component={StackRoutes} />

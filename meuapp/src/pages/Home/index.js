@@ -13,12 +13,12 @@ const Home = () => {
 		<View style={styles.container}>
 			<Text>Tela HOME</Text>
 			<Button title="Ir para Detalhes" onPress={navegaDetalhes} />
-			<Button
+			{/* <Button
 				title="Abrir Drawer"
 				onPress={() => {
 					navigation.openDrawer();
 				}}
-			/>
+			/> */}
 		</View>
 	);
 };
