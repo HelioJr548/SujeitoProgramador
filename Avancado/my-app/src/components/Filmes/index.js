@@ -37,7 +37,7 @@ export default function Filmes({ data }) {
 }
 
 const styles = StyleSheet.create({
-	card: { backgroundColo: '#fff', margin: 15, elevation: 2 },
+	card: { backgroundColor: '#fff', margin: 15, elevation: 2 },
 	capa: { height: 250, zIndex: 2, resizeMode: 'cover' },
 	titulo: { padding: 15, fontSize: 18 },
 	areaBotao: { alignItems: 'flex-end', marginTop: -45, zIndex: 9 },
