@@ -4,19 +4,26 @@ import { StyleSheet, Text, View, Animated } from 'react-native';
 export default function App() {
 	const larAnimada = useRef(new Animated.Value(150)).current;
 	const altAnimada = useRef(new Animated.Value(50)).current;
+	const opacidadeAnimada = useRef(new Animated.Value(1)).current;
 
 	useEffect(() => {
-		Animated.timing(larAnimada, {
-			toValue: 300,
-			duration: 2000,
-			useNativeDriver: false,
-		}).start();
-
-		// Animated.timing(altAnimada, {
-		// 	toValue: 80,
-		// 	duration: 2000,
-		// 	useNativeDriver: false,
-		// }).start();
+		Animated.sequence([
+			Animated.timing(larAnimada, {
+				toValue: 300,
+				duration: 2000,
+				useNativeDriver: false,
+			}),
+			Animated.timing(altAnimada, {
+				toValue: 100,
+				duration: 2000,
+				useNativeDriver: false,
+			}),
+			Animated.timing(opacidadeAnimada, {
+				toValue: 0,
+				duration: 1000,
+				useNativeDriver: false,
+			}),
+		]).start();
 	}, []);
 
 	return (
@@ -27,6 +34,7 @@ export default function App() {
 					{
 						width: larAnimada,
 						height: altAnimada,
+						opacity: opacidadeAnimada,
 					},
 				]}
 			>
