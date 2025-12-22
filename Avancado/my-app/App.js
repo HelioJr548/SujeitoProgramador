@@ -2,26 +2,22 @@ import { useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Animated } from 'react-native';
 
 export default function App() {
-	const larAnimada = useRef(new Animated.Value(150)).current;
+	const larAnimada = useRef(new Animated.Value(0)).current;
 	const altAnimada = useRef(new Animated.Value(50)).current;
 	const opacidadeAnimada = useRef(new Animated.Value(1)).current;
 
 	useEffect(() => {
-		Animated.loop(
-			Animated.sequence([
-				Animated.timing(larAnimada, {
-					toValue: 300,
-					duration: 1500,
-					useNativeDriver: false,
-				}),
-				Animated.timing(larAnimada, {
-					toValue: 150,
-					duration: 1500,
-					useNativeDriver: false,
-				}),
-			])
-		).start();
+		Animated.timing(larAnimada, {
+			toValue: 300,
+			duration: 4000,
+			useNativeDriver: false,
+		}).start();
 	}, []);
+
+	let porcentagemLargura = larAnimada.interpolate({
+		inputRange: [0, 100], //Entrada
+		outputRange: ['0%', '100%'], //Vai sair de 0% até 100%
+	});
 
 	return (
 		<View style={styles.container}>
@@ -29,13 +25,13 @@ export default function App() {
 				style={[
 					styles.box,
 					{
-						width: larAnimada,
+						width: porcentagemLargura,
 						height: altAnimada,
 						opacity: opacidadeAnimada,
 					},
 				]}
 			>
-				<Text style={styles.texto}>Carregando...</Text>
+				{/* <Text style={styles.texto}>Carregando...</Text> */}
 			</Animated.View>
 		</View>
 	);
