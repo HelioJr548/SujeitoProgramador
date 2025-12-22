@@ -4,33 +4,23 @@ import { StyleSheet, Text, View, Animated } from 'react-native';
 export default function App() {
 	const larAnimada = useRef(new Animated.Value(150)).current;
 	const altAnimada = useRef(new Animated.Value(50)).current;
-	const opacidadeAnimada = useRef(new Animated.Value(0)).current;
+	const opacidadeAnimada = useRef(new Animated.Value(1)).current;
 
 	useEffect(() => {
-		Animated.sequence([
-			Animated.timing(opacidadeAnimada, {
-				toValue: 1,
-				duration: 1000,
-				useNativeDriver: false,
-			}),
-			Animated.parallel([
+		Animated.loop(
+			Animated.sequence([
 				Animated.timing(larAnimada, {
 					toValue: 300,
-					duration: 2000,
+					duration: 1500,
 					useNativeDriver: false,
 				}),
-				Animated.timing(altAnimada, {
-					toValue: 80,
-					duration: 2000,
+				Animated.timing(larAnimada, {
+					toValue: 150,
+					duration: 1500,
 					useNativeDriver: false,
 				}),
-			]),
-			Animated.timing(opacidadeAnimada, {
-				toValue: 0,
-				duration: 1000,
-				useNativeDriver: false,
-			}),
-		]).start();
+			])
+		).start();
 	}, []);
 
 	return (
