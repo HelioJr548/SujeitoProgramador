@@ -18,7 +18,15 @@ export default function App() {
 				duration: 4000,
 				useNativeDriver: false,
 			}),
-		]).start();
+		]).start(({ finished }) => {
+			alert('Animação finalizada');
+			if (finished) {
+				//boolean
+				console.log(
+					'Tanto o alert quanto o log só serão mostrados quando a animação finalizar'
+				);
+			}
+		});
 	}, []);
 
 	let porcentagemLargura = larAnimada.interpolate({
