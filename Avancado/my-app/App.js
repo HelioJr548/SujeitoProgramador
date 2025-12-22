@@ -7,22 +7,22 @@ export default function App() {
 	const opacidadeAnimada = useRef(new Animated.Value(1)).current;
 
 	useEffect(() => {
-		Animated.sequence([
+		Animated.parallel([
 			Animated.timing(larAnimada, {
 				toValue: 300,
 				duration: 2000,
 				useNativeDriver: false,
 			}),
 			Animated.timing(altAnimada, {
-				toValue: 100,
+				toValue: 80,
 				duration: 2000,
 				useNativeDriver: false,
 			}),
-			Animated.timing(opacidadeAnimada, {
-				toValue: 0,
-				duration: 1000,
-				useNativeDriver: false,
-			}),
+			// Animated.timing(opacidadeAnimada, {
+			// 	toValue: 0,
+			// 	duration: 1000,
+			// 	useNativeDriver: false,
+			// }),
 		]).start();
 	}, []);
 
