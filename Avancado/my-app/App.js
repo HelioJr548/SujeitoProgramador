@@ -1,57 +1,35 @@
-import { useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, Animated } from 'react-native';
+import { useRef } from 'react';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
+
+import * as Animatable from 'react-native-animatable';
+
+const ButtonAnimated = Animatable.createAnimatableComponent(Pressable);
 
 export default function App() {
-	const larAnimada = useRef(new Animated.Value(0)).current;
-	const altAnimada = useRef(new Animated.Value(50)).current;
-	const opacidadeAnimada = useRef(new Animated.Value(1)).current;
+	const buttonRef = useRef(null);
 
-	useEffect(() => {
-		Animated.sequence([
-			Animated.timing(larAnimada, {
-				toValue: 100,
-				duration: 4000,
-				useNativeDriver: false,
-			}),
-			Animated.timing(altAnimada, {
-				toValue: 100,
-				duration: 4000,
-				useNativeDriver: false,
-			}),
-		]).start(({ finished }) => {
-			alert('Animação finalizada');
-			if (finished) {
-				//boolean
-				console.log(
-					'Tanto o alert quanto o log só serão mostrados quando a animação finalizar'
-				);
-			}
-		});
-	}, []);
-
-	let porcentagemLargura = larAnimada.interpolate({
-		inputRange: [0, 100], //Entrada
-		outputRange: ['0%', '100%'], //Vai sair de 0% até 100%
-	});
-	let porcentagemAltura = altAnimada.interpolate({
-		inputRange: [50, 100], //Entrada
-		outputRange: ['5%', '100%'], //Vai sair de 0% até 100%
-	});
-
+	const handleClick = () => {
+		buttonRef.current.pulse();
+	};
 	return (
 		<View style={styles.container}>
-			<Animated.View
-				style={[
-					styles.box,
-					{
-						width: porcentagemLargura,
-						height: porcentagemAltura,
-						opacity: opacidadeAnimada,
-					},
-				]}
+			<Animatable.Text
+				style={styles.title}
+				animation="shake"
+				// iterationCount={Infinity}
+				// duration={5000}
 			>
-				{/* <Text style={styles.texto}>Carregando...</Text> */}
-			</Animated.View>
+				Helio Junior
+			</Animatable.Text>
+
+			<ButtonAnimated
+				style={styles.button}
+				animation="fadeInUp"
+				ref={buttonRef}
+				onPress={handleClick}
+			>
+				<Text style={{ color: '#FFF' }}>Animar</Text>
+			</ButtonAnimated>
 		</View>
 	);
 }
@@ -63,21 +41,15 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: '#f0f0f0',
 	},
-	box: {
-		backgroundColor: '#4169e1',
+	title: {
+		fontSize: 25,
+	},
+	button: {
+		width: '70%',
+		height: 30,
+		backgroundColor: '#121212',
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderRadius: 15,
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 4 },
-		shadowOpacity: 0.3,
-		shadowRadius: 8,
-		elevation: 8,
-	},
-	texto: {
-		textAlign: 'center',
-		fontSize: 22,
-		color: '#FFF',
-		fontWeight: 'bold',
+		marginTop: 25,
 	},
 });
