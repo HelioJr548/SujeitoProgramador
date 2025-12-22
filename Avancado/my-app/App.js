@@ -7,16 +7,27 @@ export default function App() {
 	const opacidadeAnimada = useRef(new Animated.Value(1)).current;
 
 	useEffect(() => {
-		Animated.timing(larAnimada, {
-			toValue: 300,
-			duration: 4000,
-			useNativeDriver: false,
-		}).start();
+		Animated.sequence([
+			Animated.timing(larAnimada, {
+				toValue: 100,
+				duration: 4000,
+				useNativeDriver: false,
+			}),
+			Animated.timing(altAnimada, {
+				toValue: 100,
+				duration: 4000,
+				useNativeDriver: false,
+			}),
+		]).start();
 	}, []);
 
 	let porcentagemLargura = larAnimada.interpolate({
 		inputRange: [0, 100], //Entrada
 		outputRange: ['0%', '100%'], //Vai sair de 0% até 100%
+	});
+	let porcentagemAltura = altAnimada.interpolate({
+		inputRange: [50, 100], //Entrada
+		outputRange: ['5%', '100%'], //Vai sair de 0% até 100%
 	});
 
 	return (
@@ -26,7 +37,7 @@ export default function App() {
 					styles.box,
 					{
 						width: porcentagemLargura,
-						height: altAnimada,
+						height: porcentagemAltura,
 						opacity: opacidadeAnimada,
 					},
 				]}
