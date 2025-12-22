@@ -1,58 +1,63 @@
-import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
-import {
-	ActivityIndicator,
-	FlatList,
-	StyleSheet,
-	Text,
-	View,
-} from 'react-native';
-import api from './src/services/api';
-import Filmes from './src/components/Filmes';
+import { useEffect, useRef } from 'react';
+import { StyleSheet, Text, View, Animated } from 'react-native';
 
 export default function App() {
-	const [filmes, setFilmes] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const larAnimada = useRef(new Animated.Value(150)).current;
+	const altAnimada = useRef(new Animated.Value(50)).current;
 
 	useEffect(() => {
-		const loadFilmes = async () => {
-			const { data } = await api.get('r-api/?api=filmes');
-			setFilmes(data);
-			setLoading(false);
-		};
+		Animated.timing(larAnimada, {
+			toValue: 300,
+			duration: 2000,
+			useNativeDriver: false,
+		}).start();
 
-		loadFilmes();
+		// Animated.timing(altAnimada, {
+		// 	toValue: 80,
+		// 	duration: 2000,
+		// 	useNativeDriver: false,
+		// }).start();
 	}, []);
 
-	if (loading) {
-		return (
-			<View
-				style={{
-					alignItems: 'center',
-					justifyContent: 'center',
-					flex: 1,
-				}}
+	return (
+		<View style={styles.container}>
+			<Animated.View
+				style={[
+					styles.box,
+					{
+						width: larAnimada,
+						height: altAnimada,
+					},
+				]}
 			>
-				<ActivityIndicator color="#121212" size={45} />
-			</View>
-		);
-	} else {
-		return (
-			<View style={styles.container}>
-				<FlatList
-					data={filmes}
-					keyExtractor={(item) => item.id}
-					renderItem={({ item }) => <Filmes data={item} />}
-				/>
-				<StatusBar style="auto" />
-			</View>
-		);
-	}
+				<Text style={styles.texto}>Carregando...</Text>
+			</Animated.View>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: 30,
 		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#f0f0f0',
+	},
+	box: {
+		backgroundColor: '#4169e1',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 15,
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 4 },
+		shadowOpacity: 0.3,
+		shadowRadius: 8,
+		elevation: 8,
+	},
+	texto: {
+		textAlign: 'center',
+		fontSize: 22,
+		color: '#FFF',
+		fontWeight: 'bold',
 	},
 });
