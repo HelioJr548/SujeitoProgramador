@@ -22,14 +22,24 @@
 // estaAutenticado = Boolean(codeStatus);
 // console.log(estaAutenticado);
 
-// Type: array
-let numeros: number[];
-numeros = [1, 2, 3, 4];
-console.log(`Meus numeros: ${numeros}`);
-// let filmes: Array<string>;
-// let filmes: string[];
-// let filmes: Array<string | number>;
-let filmes: (string | number)[];
-filmes = ['Filme 1', 'Filme 2'];
-filmes.push(25);
-console.log(`Meus filmes: ${filmes}`);
+// // Type: array
+// let numeros: number[];
+// numeros = [1, 2, 3, 4];
+// console.log(`Meus numeros: ${numeros}`);
+// // let filmes: Array<string>;
+// // let filmes: string[];
+// // let filmes: Array<string | number>;
+// let filmes: (string | number)[];
+// filmes = ['Filme 1', 'Filme 2'];
+// filmes.push(25);
+// console.log(`Meus filmes: ${filmes}`);
+
+// Type: tuplas
+let aluno: [string, number];
+// aluno = ['Helio', 123, 'erro']; // reclama por não seguir ordem da tupla
+aluno = ['Helio', 123];
+aluno.push('Junior', 456);
+console.log(aluno);
+let statusPedido: [string, string, string];
+statusPedido = ['Em produção', 'Saiu para entrega', 'Pedido entregue'];
+console.log(statusPedido);
