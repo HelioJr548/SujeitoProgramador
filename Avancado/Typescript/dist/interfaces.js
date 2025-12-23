@@ -1,12 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function acessar(uuid, nome) {
-    console.log(`ID: ${uuid} - Bem vindo ${nome}`);
-}
-function logUsuario(uuid) {
-    console.log(`Conta referente ao UUID: ${uuid}`);
-}
-function comprarItem(moeda) {
-    console.log(`Comprando com a moeda: ${moeda}`);
-}
-comprarItem('BRL');
+const produtoInfo = {
+    id: 123,
+    nome: 'Placa de Video',
+    descricao: 'GTX 2090',
+};
+const categoria1 = {
+    slug: 'hardware',
+    quantidadeProduto: 2,
+};
+const novoProduto = {
+    id: 54321,
+    nome: 'Teclado',
+    slug: 'teclado-mecanico',
+    quantidadeProduto: 10,
+};
+console.log(novoProduto);

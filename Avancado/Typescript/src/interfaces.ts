@@ -154,23 +154,57 @@
 
 // console.log(left4deadDLC);
 
-// Alias
-type Uuid = number | string | null;
+// // Alias
+// type Uuid = number | string | null;
 
-function acessar(uuid: Uuid, nome: string) {
-	console.log(`ID: ${uuid} - Bem vindo ${nome}`);
-}
+// function acessar(uuid: Uuid, nome: string) {
+// 	console.log(`ID: ${uuid} - Bem vindo ${nome}`);
+// }
 
-function logUsuario(uuid: Uuid) {
-	console.log(`Conta referente ao UUID: ${uuid}`);
-}
+// function logUsuario(uuid: Uuid) {
+// 	console.log(`Conta referente ao UUID: ${uuid}`);
+// }
 
-// acessar(123, 'Helio');
-// acessar('55', 'Junior');
-// logUsuario('123');
+// // acessar(123, 'Helio');
+// // acessar('55', 'Junior');
+// // logUsuario('123');
 
-type Moedas = 'BRL' | 'EUR' | 'USD';
-function comprarItem(moeda: Moedas) {
-	console.log(`Comprando com a moeda: ${moeda}`);
-}
-comprarItem('BRL');
+// type Moedas = 'BRL' | 'EUR' | 'USD';
+// function comprarItem(moeda: Moedas) {
+// 	console.log(`Comprando com a moeda: ${moeda}`);
+// }
+// comprarItem('BRL');
+
+// Intersections
+type Info = {
+	id: number;
+	nome: string;
+	descricao?: string;
+};
+
+const produtoInfo: Info = {
+	id: 123,
+	nome: 'Placa de Video',
+	descricao: 'GTX 2090',
+};
+
+type Categoria = {
+	slug: string;
+	quantidadeProduto: number;
+};
+
+const categoria1: Categoria = {
+	slug: 'hardware',
+	quantidadeProduto: 2,
+};
+
+type ProdutoInfo = Info & Categoria; //ProdutoInfo é a intercessao (UNIAO) entre Info e Categoria
+
+const novoProduto: ProdutoInfo = {
+	id: 54321,
+	nome: 'Teclado',
+	slug: 'teclado-mecanico',
+	quantidadeProduto: 10,
+};
+
+console.log(novoProduto);
