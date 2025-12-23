@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function cadastro(email, senha, nome = 'Aluno', idade) {
-    let data = { email, senha, nome, idade };
-    console.log(data);
+function totalVendas(...vendas) {
+    const quantidadeVendas = vendas.length;
+    const valorTotal = vendas.reduce((acc, v) => acc + v, 0);
+    console.log(`Você fez ${quantidadeVendas} vendas hoje!. No valor total de R$ ${valorTotal}`);
 }
-cadastro('hjr@', '123');
-cadastro('hjr@', '123', 'Helio', 22);
-function cadastroLoja(nome, email, status = false) {
-    console.log(`Status atual da loja: ${status}`);
-    return status;
+totalVendas(10, 30, 25);
+function mostraNomes(...nomeUser) {
+    nomeUser.map((nome) => console.log(nome));
 }
-cadastroLoja('BK', 'bk@store.com', true);
+mostraNomes('Helio', 'Davi', 'Mathues');

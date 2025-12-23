@@ -26,22 +26,37 @@
 // };
 // retornoApi('https://...com.br');
 
-// Como deixar um valor por default ou deixar ele opcional
-function cadastro(
-	email: string,
-	senha: string,
-	nome = 'Aluno',
-	idade?: number
-): void {
-	let data = { email, senha, nome, idade };
-	console.log(data);
-}
-cadastro('hjr@', '123');
-cadastro('hjr@', '123', 'Helio', 22);
+// // Como deixar um valor por default ou deixar ele opcional
+// function cadastro(
+// 	email: string,
+// 	senha: string,
+// 	nome = 'Aluno',
+// 	idade?: number
+// ): void {
+// 	let data = { email, senha, nome, idade };
+// 	console.log(data);
+// }
+// cadastro('hjr@', '123');
+// cadastro('hjr@', '123', 'Helio', 22);
 
-function cadastroLoja(nome: string, email: string, status = false): boolean {
-	console.log(`Status atual da loja: ${status}`);
-	return status;
-}
+// function cadastroLoja(nome: string, email: string, status = false): boolean {
+// 	console.log(`Status atual da loja: ${status}`);
+// 	return status;
+// }
 
-cadastroLoja('BK', 'bk@store.com', true);
+// cadastroLoja('BK', 'bk@store.com', true);
+
+// REST PARAMS
+function totalVendas(...vendas: number[]): void {
+	const quantidadeVendas = vendas.length;
+	const valorTotal = vendas.reduce((acc, v) => acc + v, 0);
+	console.log(
+		`Você fez ${quantidadeVendas} vendas hoje!. No valor total de R$ ${valorTotal}`
+	);
+}
+totalVendas(10, 30, 25);
+
+function mostraNomes(...nomeUser: string[]) {
+	nomeUser.map((nome) => console.log(nome));
+}
+mostraNomes('Helio', 'Davi', 'Mathues');
