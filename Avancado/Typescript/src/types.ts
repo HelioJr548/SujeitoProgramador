@@ -10,7 +10,14 @@
 // valor2 = 10;
 // console.log(valor1 + valor2);
 
-// Type: Union
-let userId: number | string;
-userId = '123';
-console.log(typeof userId);
+// // Type: Union
+// let userId: number | string;
+// userId = '123';
+// console.log(typeof userId);
+
+// Type: boolean
+let estaAutenticado: boolean = true;
+let codeStatus: string = '';
+// Tudo que for diferente de 0, string vazia, undefined, será verdadeiro
+estaAutenticado = Boolean(codeStatus);
+console.log(estaAutenticado);
