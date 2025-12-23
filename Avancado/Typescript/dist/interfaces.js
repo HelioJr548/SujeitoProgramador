@@ -1,11 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const novoUsuario = {
-    email: 'hjr@',
-    status: true,
-};
-console.log(novoUsuario);
-function novoUser(usuario) {
-    console.log(usuario.email);
+function mostraPromocao(preco) {
+    console.log(`Promoção no curso por apenas: R$ ${preco}`);
 }
-novoUser({ email: 'ana@', status: false });
+const novoCurso = {
+    id: '1',
+    nome: 'Curso TS',
+    preco: 750,
+    promocao: mostraPromocao,
+};
+console.log(novoCurso);
+console.log(novoCurso.promocao(350));
+let somaNumeros = (valor1, valor2) => {
+    console.log(`Resultado: ${valor1 + valor2}`);
+    return valor1 + valor2;
+};
+const resultado = somaNumeros(15, 10);
+console.log(`Resultado da variavel: ${resultado}`);

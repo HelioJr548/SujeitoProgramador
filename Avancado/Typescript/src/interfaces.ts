@@ -19,21 +19,57 @@
 // }
 // novaLoja({ nome: 'SB', endereco: 'Rua', status: false });
 
-// Interface com propriedades opcionais
-interface ICadastroProps {
-	nome?: string;
-	email: string;
-	status: boolean;
+// // Interface com propriedades opcionais
+// interface ICadastroProps {
+// 	nome?: string;
+// 	email: string;
+// 	status: boolean;
+// }
+
+// const novoUsuario: ICadastroProps = {
+// 	// nome: 'Helio',
+// 	email: 'hjr@',
+// 	status: true,
+// };
+// console.log(novoUsuario);
+
+// function novoUser(usuario: ICadastroProps) {
+// 	console.log(usuario.email);
+// }
+// novoUser({ email: 'ana@', status: false });
+
+// Interfaces com funções
+interface ICursoProps {
+	id: string;
+	nome: string;
+	preco: number;
+
+	// definir apenas a funçao e o que ela deve esperar e retornar
+	promocao: (preco: number) => void;
 }
 
-const novoUsuario: ICadastroProps = {
-	// nome: 'Helio',
-	email: 'hjr@',
-	status: true,
+function mostraPromocao(preco: number) {
+	console.log(`Promoção no curso por apenas: R$ ${preco}`);
+}
+
+const novoCurso: ICursoProps = {
+	id: '1',
+	nome: 'Curso TS',
+	preco: 750,
+	promocao: mostraPromocao,
 };
-console.log(novoUsuario);
 
-function novoUser(usuario: ICadastroProps) {
-	console.log(usuario.email);
+console.log(novoCurso);
+console.log(novoCurso.promocao(350));
+
+interface ISomaProps {
+	(valor1: number, valor2: number): number;
 }
-novoUser({ email: 'ana@', status: false });
+let somaNumeros: ISomaProps = (valor1: number, valor2: number): number => {
+	console.log(`Resultado: ${valor1 + valor2}`);
+	return valor1 + valor2;
+};
+
+const resultado = somaNumeros(15, 10);
+
+console.log(`Resultado da variavel: ${resultado}`);
