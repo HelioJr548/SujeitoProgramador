@@ -34,12 +34,19 @@
 // filmes.push(25);
 // console.log(`Meus filmes: ${filmes}`);
 
-// Type: tuplas
-let aluno: [string, number];
-// aluno = ['Helio', 123, 'erro']; // reclama por não seguir ordem da tupla
-aluno = ['Helio', 123];
-aluno.push('Junior', 456);
-console.log(aluno);
-let statusPedido: [string, string, string];
-statusPedido = ['Em produção', 'Saiu para entrega', 'Pedido entregue'];
-console.log(statusPedido);
+// // Type: tuplas
+// let aluno: [string, number];
+// // aluno = ['Helio', 123, 'erro']; // reclama por não seguir ordem da tupla
+// aluno = ['Helio', 123];
+// aluno.push('Junior', 456);
+// console.log(aluno);
+// let statusPedido: [string, string, string];
+// statusPedido = ['Em produção', 'Saiu para entrega', 'Pedido entregue'];
+// console.log(statusPedido);
+
+// Type: object
+let novoUsuario: object = {
+	nome: 'Helio',
+	email: 'hjr@.com',
+};
+console.log(novoUsuario);
