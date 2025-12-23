@@ -1,7 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-let idPedido = 123;
-let totalPedido = 15;
-let entregador = idPedido;
-let totalEntrega = totalPedido;
-console.log(entregador);
+let statusAtual = 1;
+let mudaStatus = 0;
+mudaStatus = statusAtual;
+mudaStatus = statusAtual;
+console.log(mudaStatus);
+let query = 'pizza';
+let searchTerm = query;
+console.log(`Search TERM: ${searchTerm}`);

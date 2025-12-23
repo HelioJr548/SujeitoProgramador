@@ -72,10 +72,23 @@
 // let nomeUser; // quando não declarado tipo, padrao é undefined
 // console.log(nomeUser);
 
-// Type: UNKNOWN
-let idPedido: any = 123;
-let totalPedido: unknown = 15;
-let entregador: number = idPedido;
-// valor do tipo unknown só podem ser atribuidos ao tipo unknown ou any
-let totalEntrega: number = totalPedido;
-console.log(entregador);
+// // Type: UNKNOWN
+// let idPedido: any = 123;
+// let totalPedido: unknown = 15;
+// let entregador: number = idPedido;
+// // valor do tipo unknown só podem ser atribuidos ao tipo unknown ou any
+// let totalEntrega: number = totalPedido;
+// console.log(entregador);
+
+// Type: Assertions
+let statusAtual: unknown = 1;
+let mudaStatus: number = 0;
+// Afirmando que o statusAtual é de fato um numero
+mudaStatus = statusAtual as number;
+// Outra  maneira de afirmar o tipo
+mudaStatus = <number>statusAtual;
+console.log(mudaStatus);
+
+let query: unknown = 'pizza';
+let searchTerm: string = query as string;
+console.log(`Search TERM: ${searchTerm}`);
