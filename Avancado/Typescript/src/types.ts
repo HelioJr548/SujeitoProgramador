@@ -80,15 +80,25 @@
 // let totalEntrega: number = totalPedido;
 // console.log(entregador);
 
-// Type: Assertions
-let statusAtual: unknown = 1;
-let mudaStatus: number = 0;
-// Afirmando que o statusAtual é de fato um numero
-mudaStatus = statusAtual as number;
-// Outra  maneira de afirmar o tipo
-mudaStatus = <number>statusAtual;
-console.log(mudaStatus);
+// // Type: Assertions
+// let statusAtual: unknown = 1;
+// let mudaStatus: number = 0;
+// // Afirmando que o statusAtual é de fato um numero
+// mudaStatus = statusAtual as number;
+// // Outra  maneira de afirmar o tipo
+// mudaStatus = <number>statusAtual;
+// console.log(mudaStatus);
 
-let query: unknown = 'pizza';
-let searchTerm: string = query as string;
-console.log(`Search TERM: ${searchTerm}`);
+// let query: unknown = 'pizza';
+// let searchTerm: string = query as string;
+// console.log(`Search TERM: ${searchTerm}`);
+
+// Tipagem DINAMICA
+let curso = 'Typescript';
+
+let tecnologias = ['PHP', 'React JS'];
+
+tecnologias.push('React Native');
+tecnologias.push(2021); // Tipagem do TS reclama, por tipo diferente
+
+console.log(tecnologias);
