@@ -66,8 +66,16 @@
 // console.log(StatusPermission.USER);
 // console.log(StatusPermission.SUPPORT);
 
-// Type: NULL e UNDEFINED
-let nome: string | null;
-nome = null;
-let nomeUser; // quando não declarado tipo, padrao é undefined
-console.log(nomeUser);
+// // Type: NULL e UNDEFINED
+// let nome: string | null;
+// nome = null;
+// let nomeUser; // quando não declarado tipo, padrao é undefined
+// console.log(nomeUser);
+
+// Type: UNKNOWN
+let idPedido: any = 123;
+let totalPedido: unknown = 15;
+let entregador: number = idPedido;
+// valor do tipo unknown só podem ser atribuidos ao tipo unknown ou any
+let totalEntrega: number = totalPedido;
+console.log(entregador);
