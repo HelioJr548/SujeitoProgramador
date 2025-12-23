@@ -51,17 +51,23 @@
 // };
 // console.log(novoUsuario);
 
-// Type: enum
-enum DesignColors {
-	white = '#FFF',
-	black = '#000',
-}
-console.log(DesignColors.black);
-enum StatusPermission {
-	ADMIN,
-	USER,
-	SUPPORT,
-}
-console.log(StatusPermission.ADMIN);
-console.log(StatusPermission.USER);
-console.log(StatusPermission.SUPPORT);
+// // Type: enum
+// enum DesignColors {
+// 	white = '#FFF',
+// 	black = '#000',
+// }
+// console.log(DesignColors.black);
+// enum StatusPermission {
+// 	ADMIN,
+// 	USER,
+// 	SUPPORT,
+// }
+// console.log(StatusPermission.ADMIN);
+// console.log(StatusPermission.USER);
+// console.log(StatusPermission.SUPPORT);
+
+// Type: NULL e UNDEFINED
+let nome: string | null;
+nome = null;
+let nomeUser; // quando não declarado tipo, padrao é undefined
+console.log(nomeUser);
