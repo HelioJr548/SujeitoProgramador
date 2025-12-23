@@ -44,9 +44,24 @@
 // statusPedido = ['Em produção', 'Saiu para entrega', 'Pedido entregue'];
 // console.log(statusPedido);
 
-// Type: object
-let novoUsuario: object = {
-	nome: 'Helio',
-	email: 'hjr@.com',
-};
-console.log(novoUsuario);
+// // Type: object
+// let novoUsuario: object = {
+// 	nome: 'Helio',
+// 	email: 'hjr@.com',
+// };
+// console.log(novoUsuario);
+
+// Type: enum
+enum DesignColors {
+	white = '#FFF',
+	black = '#000',
+}
+console.log(DesignColors.black);
+enum StatusPermission {
+	ADMIN,
+	USER,
+	SUPPORT,
+}
+console.log(StatusPermission.ADMIN);
+console.log(StatusPermission.USER);
+console.log(StatusPermission.SUPPORT);
