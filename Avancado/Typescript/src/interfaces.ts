@@ -103,21 +103,53 @@
 // 	slug: ['php', 'php-do-zero', 'php12'],
 // };
 
-interface ITecnologiaProps {
-	id: string;
+// interface ITecnologiaProps {
+// 	id: string;
+// 	nome: string;
+// 	descricao?: string;
+// }
+
+// interface INomesProps {
+// 	tecnologia: ITecnologiaProps[];
+// }
+
+// let frontend: INomesProps = {
+// 	tecnologia: [
+// 		{ id: '12', nome: 'ReactJS', descricao: 'Lib para criar interfaces' },
+// 		{ id: '43', nome: 'VueJs' },
+// 	],
+// };
+
+// console.log(frontend.tecnologia);
+
+// Extends
+interface IJogoProps {
+	readonly id: string;
 	nome: string;
-	descricao?: string;
+	descricao: string;
+	plataforma: string[];
 }
 
-interface INomesProps {
-	tecnologia: ITecnologiaProps[];
-}
-
-let frontend: INomesProps = {
-	tecnologia: [
-		{ id: '12', nome: 'ReactJS', descricao: 'Lib para criar interfaces' },
-		{ id: '43', nome: 'VueJs' },
-	],
+const left4dead: IJogoProps = {
+	id: '123',
+	nome: 'Left 4 Dead 2',
+	descricao: 'Jogo ação e tiro',
+	plataforma: ['PS5', 'PS4', 'Xbox Series', 'Xbox One', 'PC'],
 };
 
-console.log(frontend.tecnologia);
+console.log(left4dead);
+interface IDLC extends IJogoProps {
+	jogoOriginal: IJogoProps;
+	novoConteudo: string[];
+}
+
+const left4deadDLC: IDLC = {
+	id: '90',
+	nome: 'Left 4 Dead - Novos Mapas',
+	descricao: '4 novos mapas para jogar online',
+	plataforma: ['PS5', 'PS4', 'Xbox Series', 'Xbox One', 'PC'],
+	novoConteudo: ['Modo Coop', 'Mais 5 horas de jogo', 'Medalhas'],
+	jogoOriginal: left4dead,
+};
+
+console.log(left4deadDLC);
