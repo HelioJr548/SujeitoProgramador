@@ -74,18 +74,50 @@
 
 // console.log(`Resultado da variavel: ${resultado}`);
 
-// ReadOnly
-interface IProdutoProps {
-	readonly id: string;
+// // ReadOnly
+// interface IProdutoProps {
+// 	readonly id: string;
+// 	nome: string;
+// 	descricao: string;
+// }
+
+// let produto1: IProdutoProps = {
+// 	id: '1',
+// 	nome: 'Tenis',
+// 	descricao: 'Tenis bom',
+// };
+
+// produto1.id = '123';
+// console.log(produto1);
+
+// // Array na interface
+// interface ITecnologiaProps {
+// 	id: string;
+// 	nome: string;
+// 	slug: string[];
+// }
+
+// let tecnologia1: ITecnologiaProps = {
+// 	id: '1',
+// 	nome: 'PHP',
+// 	slug: ['php', 'php-do-zero', 'php12'],
+// };
+
+interface ITecnologiaProps {
+	id: string;
 	nome: string;
-	descricao: string;
+	descricao?: string;
 }
 
-let produto1: IProdutoProps = {
-	id: '1',
-	nome: 'Tenis',
-	descricao: 'Tenis bom',
+interface INomesProps {
+	tecnologia: ITecnologiaProps[];
+}
+
+let frontend: INomesProps = {
+	tecnologia: [
+		{ id: '12', nome: 'ReactJS', descricao: 'Lib para criar interfaces' },
+		{ id: '43', nome: 'VueJs' },
+	],
 };
 
-produto1.id = '123';
-console.log(produto1);
+console.log(frontend.tecnologia);

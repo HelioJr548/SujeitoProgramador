@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-let produto1 = {
-    id: '1',
-    nome: 'Tenis',
-    descricao: 'Tenis bom',
+let frontend = {
+    tecnologia: [
+        { id: '12', nome: 'ReactJS', descricao: 'Lib para criar interfaces' },
+        { id: '43', nome: 'VueJs' },
+    ],
 };
-produto1.id = '123';
-console.log(produto1);
+console.log(frontend.tecnologia);
