@@ -1,14 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const BurguerK = {
-    nome: 'BK',
-    endereco: 'Rua X',
+const novoUsuario = {
+    email: 'hjr@',
     status: true,
 };
-console.log(BurguerK);
-function novaLoja({ nome, endereco, status }) {
-    console.log(`Loja ${nome} criada com sucesso!`);
-    console.log(`Endereço da loja ${endereco}`);
-    console.log(`Status da loja ${status}`);
+console.log(novoUsuario);
+function novoUser(usuario) {
+    console.log(usuario.email);
 }
-novaLoja({ nome: 'SB', endereco: 'Rua', status: false });
+novoUser({ email: 'ana@', status: false });
