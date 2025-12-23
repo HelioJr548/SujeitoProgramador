@@ -1,6 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const retornoApi = (url) => {
-    console.log(`URL DA API: ${url}`);
-};
-retornoApi('https://...com.br');
+function cadastro(email, senha, nome = 'Aluno', idade) {
+    let data = { email, senha, nome, idade };
+    console.log(data);
+}
+cadastro('hjr@', '123');
+cadastro('hjr@', '123', 'Helio', 22);
+function cadastroLoja(nome, email, status = false) {
+    console.log(`Status atual da loja: ${status}`);
+    return status;
+}
+cadastroLoja('BK', 'bk@store.com', true);
