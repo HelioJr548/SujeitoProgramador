@@ -1,5 +1,8 @@
 import { Stack } from 'expo-router';
 
+interface IProdutoParams {
+	id: string;
+}
 export default function RootLayout() {
 	return (
 		<Stack>
@@ -27,9 +30,11 @@ export default function RootLayout() {
 			/>
 			<Stack.Screen
 				name="produto/[id]"
-				options={{
-					title: 'Detalhe do produto',
-				}}
+				options={({ route }) => ({
+					title: `Produto: ${
+						(route.params as IProdutoParams)?.id ?? ''
+					}`,
+				})}
 			/>
 		</Stack>
 	);
