@@ -20,7 +20,7 @@ export default function TabsLayout() {
 				name="produtos"
 				options={{
 					headerShown: false,
-					tabBarLabel: 'Profutos',
+					tabBarLabel: 'Produtos',
 					tabBarIcon: ({ focused, size, color }) => {
 						return (
 							<Feather
@@ -28,6 +28,18 @@ export default function TabsLayout() {
 								size={size}
 								color={color}
 							/>
+						);
+					},
+				}}
+			/>
+			<Tabs.Screen
+				name="search/index"
+				options={{
+					headerShown: false,
+					tabBarLabel: 'Buscar',
+					tabBarIcon: ({ focused, size, color }) => {
+						return (
+							<Feather name="search" size={size} color={color} />
 						);
 					},
 				}}

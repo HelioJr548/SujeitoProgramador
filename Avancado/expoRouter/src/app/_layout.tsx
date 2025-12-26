@@ -25,6 +25,12 @@ export default function RootLayout() {
 					title: 'Contatos',
 				}}
 			/>
+			<Stack.Screen
+				name="produto/[id]"
+				options={{
+					title: 'Detalhe do produto',
+				}}
+			/>
 		</Stack>
 	);
 }

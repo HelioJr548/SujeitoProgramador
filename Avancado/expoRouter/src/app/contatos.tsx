@@ -2,7 +2,7 @@ import { Link, router } from 'expo-router';
 // import { useRouter } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 
-export default function Profile() {
+export default function Contatos() {
 	// const router = useRouter();
 
 	function handleNavigate() {
