@@ -1,7 +1,13 @@
-import { Link } from 'expo-router';
-import { Text, View } from 'react-native';
+import { Link, useRouter } from 'expo-router';
+import { Pressable, Text, View } from 'react-native';
 
 export default function Search() {
+	const router = useRouter();
+	function handleNavigate() {
+		const id = '1231523513123';
+		router.push(`/produto/${id}`);
+	}
+
 	return (
 		<View
 			style={{
@@ -17,6 +23,10 @@ export default function Search() {
 			>
 				Ir para o Produto 456746
 			</Link>
+
+			<Pressable onPress={handleNavigate}>
+				<Text>Ir para o produto 102030</Text>
+			</Pressable>
 		</View>
 	);
 }
