@@ -2,22 +2,16 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { db } from './src/firebaseConnection';
 import { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 
 export default function App() {
 	const [nome, setNome] = useState('Carregando...');
 
 	useEffect(() => {
 		async function getDados() {
-			const docRef = doc(db, 'users', '1');
-
-			await getDoc(docRef)
-				.then((snapshot) => {
-					setNome(snapshot.data()?.nome);
-				})
-				.catch((err) => {
-					console.log(`ERROR: ${err}`);
-				});
+			onSnapshot(doc(db, 'users', '1'), (doc) => {
+				setNome(doc.data()?.nome);
+			});
 		}
 
 		getDados();
