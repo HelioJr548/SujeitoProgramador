@@ -2,7 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { db } from './src/firebaseConnection';
 import { useEffect, useState } from 'react';
-import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
+import {
+	addDoc,
+	collection,
+	doc,
+	getDoc,
+	onSnapshot,
+	setDoc,
+} from 'firebase/firestore';
 
 export default function App() {
 	const [nome, setNome] = useState('Carregando...');
@@ -18,10 +25,10 @@ export default function App() {
 	// }, []);
 
 	async function handleRegister() {
-		await setDoc(doc(db, 'users', '3'), {
-			nome: 'Junior',
-			idade: '23',
-			cargo: 'Backend',
+		await addDoc(collection(db, 'users'), {
+			nome: 'fulano',
+			idade: '12',
+			cargo: 'estudante',
 		});
 	}
 
