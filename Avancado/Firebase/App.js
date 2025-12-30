@@ -17,6 +17,7 @@ import {
 	getDocs,
 	onSnapshot,
 	setDoc,
+	updateDoc,
 } from 'firebase/firestore';
 import { UsersList } from './src/components/users';
 
@@ -28,6 +29,7 @@ export default function App() {
 	const [users, setUsers] = useState([]);
 
 	const [showForm, setShowForm] = useState(true);
+	const [isEditing, setIsEditing] = useState('');
 
 	useEffect(() => {
 		async function getDados() {
@@ -80,6 +82,27 @@ export default function App() {
 		setShowForm(!showForm);
 	}
 
+	function editUser(data) {
+		setNome(data.nome);
+		setIdade(data.idade);
+		setCargo(data.cargo);
+		setIsEditing(data.id);
+	}
+
+	async function handleEditUser() {
+		const docRef = doc(db, 'users', isEditing);
+		await updateDoc(docRef, {
+			nome,
+			idade,
+			cargo,
+		});
+
+		setNome('');
+		setIdade('');
+		setCargo('');
+		setIsEditing('');
+	}
+
 	return (
 		<View style={styles.container}>
 			{showForm && (
@@ -109,9 +132,23 @@ export default function App() {
 						onChangeText={(text) => setCargo(text)}
 					/>
 
-					<Pressable style={styles.button} onPress={handleRegister}>
-						<Text style={styles.buttonText}>Adicionar</Text>
-					</Pressable>
+					{isEditing !== '' ? (
+						<Pressable
+							style={styles.button}
+							onPress={handleEditUser}
+						>
+							<Text style={styles.buttonText}>
+								Salvar alterações
+							</Text>
+						</Pressable>
+					) : (
+						<Pressable
+							style={styles.button}
+							onPress={handleRegister}
+						>
+							<Text style={styles.buttonText}>Adicionar</Text>
+						</Pressable>
+					)}
 				</View>
 			)}
 
@@ -136,7 +173,12 @@ export default function App() {
 				style={styles.list}
 				data={users}
 				keyExtractor={(item) => item.id}
-				renderItem={({ item }) => <UsersList data={item} />}
+				renderItem={({ item }) => (
+					<UsersList
+						data={item}
+						handleEdit={(item) => editUser(item)}
+					/>
+				)}
 			/>
 			<StatusBar style="auto" />
 		</View>
