@@ -1,5 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+	FlatList,
+	Pressable,
+	StyleSheet,
+	Text,
+	TextInput,
+	View,
+} from 'react-native';
 import { db } from './src/firebaseConnection';
 import { useEffect, useState } from 'react';
 import {
@@ -7,42 +14,66 @@ import {
 	collection,
 	doc,
 	getDoc,
+	getDocs,
 	onSnapshot,
 	setDoc,
 } from 'firebase/firestore';
+import { UsersList } from './src/components/users';
 
 export default function App() {
 	const [nome, setNome] = useState('');
 	const [idade, setIdade] = useState('');
 	const [cargo, setCargo] = useState('');
 
+	const [users, setUsers] = useState([]);
+
 	const [showForm, setShowForm] = useState(true);
 
-	// useEffect(() => {
-	// 	async function getDados() {
-	// 		onSnapshot(doc(db, 'users', '1'), (doc) => {
-	// 			setNome(doc.data()?.nome);
-	// 		});
-	// 	}
+	useEffect(() => {
+		async function getDados() {
+			const usersRef = collection(db, 'users');
 
-	// 	getDados();
-	// }, []);
+			onSnapshot(usersRef, (snapshot) => {
+				let lista = [];
+
+				snapshot.forEach((doc) => {
+					lista.push({
+						id: doc.id,
+						nome: doc.data().nome,
+						idade: doc.data().idade,
+						cargo: doc.data().cargo,
+					});
+				});
+				setUsers(lista);
+			});
+		}
+
+		getDados();
+	}, []);
 
 	async function handleRegister() {
-		await addDoc(collection(db, 'users'), {
-			nome: nome,
-			idade: idade,
-			cargo: cargo,
-		})
-			.then(() => {
-				console.log('CADASTRADO COM SUCESSO');
-				setNome('');
-				setIdade('');
-				setCargo('');
-			})
-			.catch((err) => {
-				console.log(`ERRO: ${err}`);
+		try {
+			// Validação básica
+			if (!nome.trim() || !idade.trim() || !cargo.trim()) {
+				console.log('Preencha todos os campos');
+				return;
+			}
+
+			await addDoc(collection(db, 'users'), {
+				nome: nome.trim(),
+				idade: idade, // Converte para número
+				cargo: cargo.trim(),
 			});
+
+			// Limpa SEMPRE após sucesso
+			setNome('');
+			setIdade('');
+			setCargo('');
+			console.log('CADASTRADO COM SUCESSO');
+		} catch (err) {
+			console.log(`ERRO: ${err.message}`);
+			// Opcional: mostrar alerta ao usuário
+		}
 	}
 
 	function handleToggle() {
@@ -57,6 +88,7 @@ export default function App() {
 					<TextInput
 						style={styles.input}
 						placeholder="Digite seu  nome"
+						value={nome}
 						onChangeText={(text) => setNome(text)}
 					/>
 
@@ -64,6 +96,7 @@ export default function App() {
 					<TextInput
 						style={styles.input}
 						placeholder="Digite sua idade"
+						value={idade}
 						keyboardType="numeric"
 						onChangeText={(text) => setIdade(text)}
 					/>
@@ -72,6 +105,7 @@ export default function App() {
 					<TextInput
 						style={styles.input}
 						placeholder="Digite seu cargo"
+						value={cargo}
 						onChangeText={(text) => setCargo(text)}
 					/>
 
@@ -81,16 +115,30 @@ export default function App() {
 				</View>
 			)}
 
-			<View>
-				<Pressable style={{ marginTop: 8 }} onPress={handleToggle}>
-					<Text style={{ textAlign: 'center', color: '#000' }}>
-						{showForm
-							? 'Esconder formulário'
-							: 'Mostrar formulário'}
-					</Text>
-				</Pressable>
-				<StatusBar style="auto" />
-			</View>
+			<Pressable style={{ marginTop: 8 }} onPress={handleToggle}>
+				<Text style={{ textAlign: 'center', color: '#000' }}>
+					{showForm ? 'Esconder formulário' : 'Mostrar formulário'}
+				</Text>
+			</Pressable>
+
+			<Text
+				style={{
+					marginTop: 14,
+					marginLeft: 8,
+					fontSize: 20,
+					color: '#000',
+				}}
+			>
+				Usuários:
+			</Text>
+
+			<FlatList
+				style={styles.list}
+				data={users}
+				keyExtractor={(item) => item.id}
+				renderItem={({ item }) => <UsersList data={item} />}
+			/>
+			<StatusBar style="auto" />
 		</View>
 	);
 }
@@ -118,5 +166,9 @@ const styles = StyleSheet.create({
 		marginHorizontal: 8,
 		marginBottom: 8,
 		borderRadius: 5,
+	},
+	list: {
+		marginTop: 8,
+		marginHorizontal: 8,
 	},
 });
