@@ -19,7 +19,8 @@ import {
 	updateDoc,
 } from 'firebase/firestore';
 import { UsersList } from './users';
-import { db } from '../firebaseConnection';
+import { auth, db } from '../firebaseConnection';
+import { signOut } from 'firebase/auth';
 
 export function FormUsers() {
 	const [nome, setNome] = useState('');
@@ -103,6 +104,10 @@ export function FormUsers() {
 		setIsEditing('');
 	}
 
+	async function handleLogout() {
+		await signOut(auth);
+	}
+
 	return (
 		<View style={styles.container}>
 			{showForm && (
@@ -180,6 +185,16 @@ export function FormUsers() {
 					/>
 				)}
 			/>
+
+			<Pressable
+				onPress={handleLogout}
+				style={[
+					styles.button,
+					{ backgroundColor: 'red', marginBottom: 14 },
+				]}
+			>
+				<Text style={styles.buttonText}>Logout</Text>
+			</Pressable>
 			<StatusBar style="auto" />
 		</View>
 	);
@@ -187,7 +202,7 @@ export function FormUsers() {
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: 40,
+		marginTop: 0,
 		flex: 1,
 		backgroundColor: '#fff',
 	},

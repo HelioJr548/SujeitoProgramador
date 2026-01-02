@@ -14,13 +14,19 @@ export default function App() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [authUser, setAuthUser] = useState(null);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setAuthUser({ email: user.email, uid: user.uid });
+
+				setLoading(false);
 				return;
 			}
+
+			setAuthUser(null);
+			setLoading(false);
 		});
 	}, []);
 
@@ -57,18 +63,23 @@ export default function App() {
 		setAuthUser(null);
 	}
 
+	if (authUser) {
+		return (
+			<View style={styles.container}>
+				<FormUsers />
+			</View>
+		);
+	}
+
 	return (
 		<View style={styles.container}>
-			<Text
-				style={{
-					fontSize: 16,
-					color: '#000',
-					marginHorizontal: 8,
-					marginBottom: 14,
-				}}
-			>
-				Usuario logado: {authUser && authUser.email}
-			</Text>
+			{loading && (
+				<Text
+					style={{ fontSize: 20, marginHorizontal: 8, color: '#000' }}
+				>
+					Carregando informações
+				</Text>
+			)}
 
 			<Text style={{ marginHorizontal: 8, fontSize: 18, color: '#000' }}>
 				Email:
@@ -105,12 +116,14 @@ export default function App() {
 				<Text style={styles.buttonText}>Criar uma conta</Text>
 			</Pressable>
 
-			<Pressable
-				style={[styles.button, { backgroundColor: 'red' }]}
-				onPress={handleLogout}
-			>
-				<Text style={styles.buttonText}>Logout</Text>
-			</Pressable>
+			{authUser && (
+				<Pressable
+					style={[styles.button, { backgroundColor: 'red' }]}
+					onPress={handleLogout}
+				>
+					<Text style={styles.buttonText}>Logout</Text>
+				</Pressable>
+			)}
 			<StatusBar style="auto" />
 		</View>
 	);
