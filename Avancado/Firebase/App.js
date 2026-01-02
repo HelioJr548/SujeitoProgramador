@@ -20,10 +20,19 @@ export default function App() {
 		);
 		console.log(user);
 	}
-	async function handleLogin() {
-		const user = await signInWithEmailAndPassword(auth, email, password);
-		console.log('Usuario logado');
-		console.log(user);
+	function handleLogin() {
+		signInWithEmailAndPassword(auth, email, password)
+			.then((user) => {
+				console.log(user);
+			})
+			.catch((err) => {
+				if (err.code == 'auth/missing-password') {
+					console.log('A senha é obrigatória');
+					return;
+				}
+
+				console.log(err.code); //mostra erros
+			});
 	}
 
 	return (
