@@ -1,22 +1,15 @@
 import { Text, View } from 'react-native';
-import styled from 'styled-components';
+import { Container, Nome, Titulo, BotaoSujeito, BotaoText } from './src/styles';
 
 export default function App() {
 	return (
 		<Container>
-			<Titulo>Sujeito Programador</Titulo>
+			<Titulo cor="#ff0000">Sujeito Programador</Titulo>
+			<Nome tamanho={20}>olá, Helio</Nome>
+
+			<BotaoSujeito onPress={() => alert('Clicou')}>
+				<BotaoText>Entrar</BotaoText>
+			</BotaoSujeito>
 		</Container>
 	);
 }
-
-const Container = styled.View`
-	flex: 1;
-	justify-content: center;
-	align-items: center;
-	background-color: #ff0000;
-`;
-
-const Titulo = styled.Text`
-	color: #fff;
-	font-size: 25px;
-`;
