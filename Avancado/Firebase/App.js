@@ -11,6 +11,7 @@ import { useState } from 'react';
 export default function App() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [authUser, setAuthUser] = useState(null);
 
 	async function handleCreateUser() {
 		const user = await createUserWithEmailAndPassword(
@@ -22,8 +23,13 @@ export default function App() {
 	}
 	function handleLogin() {
 		signInWithEmailAndPassword(auth, email, password)
-			.then((user) => {
+			.then(({ user }) => {
+				console.log('Usuario logado');
 				console.log(user);
+				setAuthUser({
+					email: user.email,
+					uid: user.uid,
+				});
 			})
 			.catch((err) => {
 				if (err.code == 'auth/missing-password') {
@@ -37,6 +43,8 @@ export default function App() {
 
 	return (
 		<View style={styles.container}>
+			<Text>Usuario logado: {authUser && authUser.email}</Text>
+
 			<Text style={{ marginHorizontal: 8, fontSize: 18, color: '#000' }}>
 				Email:
 			</Text>
