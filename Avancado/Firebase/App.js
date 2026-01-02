@@ -3,15 +3,26 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { FormUsers } from './src/components/FormUser';
 import {
 	createUserWithEmailAndPassword,
+	onAuthStateChanged,
 	signInWithEmailAndPassword,
+	signOut,
 } from 'firebase/auth';
 import { auth } from './src/firebaseConnection';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function App() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [authUser, setAuthUser] = useState(null);
+
+	useEffect(() => {
+		const unsub = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setAuthUser({ email: user.email, uid: user.uid });
+				return;
+			}
+		});
+	}, []);
 
 	async function handleCreateUser() {
 		const user = await createUserWithEmailAndPassword(
@@ -41,9 +52,23 @@ export default function App() {
 			});
 	}
 
+	async function handleLogout() {
+		await signOut(auth);
+		setAuthUser(null);
+	}
+
 	return (
 		<View style={styles.container}>
-			<Text>Usuario logado: {authUser && authUser.email}</Text>
+			<Text
+				style={{
+					fontSize: 16,
+					color: '#000',
+					marginHorizontal: 8,
+					marginBottom: 14,
+				}}
+			>
+				Usuario logado: {authUser && authUser.email}
+			</Text>
 
 			<Text style={{ marginHorizontal: 8, fontSize: 18, color: '#000' }}>
 				Email:
@@ -70,11 +95,21 @@ export default function App() {
 				style={[styles.button, { marginBottom: 8 }]}
 				onPress={handleLogin}
 			>
-				<Text style={styles.buttonText}>Acessar conta</Text>
+				<Text style={styles.buttonText}>Login</Text>
 			</Pressable>
 
-			<Pressable style={styles.button} onPress={handleCreateUser}>
+			<Pressable
+				style={[styles.button, { marginBottom: 8 }]}
+				onPress={handleCreateUser}
+			>
 				<Text style={styles.buttonText}>Criar uma conta</Text>
+			</Pressable>
+
+			<Pressable
+				style={[styles.button, { backgroundColor: 'red' }]}
+				onPress={handleLogout}
+			>
+				<Text style={styles.buttonText}>Logout</Text>
 			</Pressable>
 			<StatusBar style="auto" />
 		</View>
