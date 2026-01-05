@@ -7,8 +7,16 @@ import {
 	SubmitButton,
 	SubmitText,
 } from '../SignIn/styles';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/auth';
 
 export default function SignUp() {
+	const { user } = useContext(AuthContext);
+
+	function handleSignUp() {
+		console.log(user);
+	}
+
 	return (
 		<Background>
 			<Container behavior={'padding'} enabled>
@@ -20,7 +28,7 @@ export default function SignUp() {
 					<Input placeholder="Sua senha"></Input>
 				</AreaInput>
 
-				<SubmitButton>
+				<SubmitButton onPress={handleSignUp}>
 					<SubmitText>Cadastrar</SubmitText>
 				</SubmitButton>
 			</Container>
