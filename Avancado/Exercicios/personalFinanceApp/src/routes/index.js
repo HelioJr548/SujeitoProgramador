@@ -1,13 +1,12 @@
 import { View } from 'react-native';
 import AuthRoutes from './auth.routes';
+import AppRoutes from './app.routes';
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/auth';
 
 export default function Routes() {
+	const { signed } = useContext(AuthContext);
 	const loading = false;
-	const signed = false;
 
-	return signed ? (
-		<View style={{ flex: 1, backgroundColor: '#ff8654' }}></View>
-	) : (
-		<AuthRoutes />
-	);
+	return signed ? <AppRoutes /> : <AuthRoutes />;
 }
