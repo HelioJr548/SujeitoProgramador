@@ -21,6 +21,7 @@ export const SubmitButton = styled.TouchableOpacity`
 	justify-content: center;
 	background-color: #00b94a;
 	border-radius: 4px;
+	margin-top: 14px;
 `;
 export const SubmitText = styled.Text`
 	color: #fff;
