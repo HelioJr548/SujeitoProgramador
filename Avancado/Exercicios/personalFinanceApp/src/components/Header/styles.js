@@ -5,7 +5,6 @@ export const Container = styled(SafeAreaView)`
 	flex-direction: row;
 	align-items: center;
 	justify-content: ;
-	padding-top: 30px;
 	padding-left: 15px;
 	padding-bottom: 15px;
 	width: 100%;
