@@ -9,14 +9,14 @@ function AuthProvider({ children }) {
 	const [loadingAuth, setLoadingAuth] = useState(false);
 
 	const navigation = useNavigation();
-	const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 	async function signUp(email, password, nome) {
 		setLoadingAuth(true);
 		try {
 			await api.post('/users', {
 				name: nome,
-				email,
-				password,
+				email: email.trim(),
+				password: password.trim,
 			});
 
 			setLoadingAuth(false);
@@ -27,9 +27,34 @@ function AuthProvider({ children }) {
 		}
 	}
 
+	async function signIn(email, password) {
+		setLoadingAuth(true);
+
+		try {
+			const response = await api.post('/login', {
+				email,
+				password,
+			});
+			const { id, name, token } = response.data;
+			const data = {
+				id,
+				name,
+				token,
+				email,
+			};
+
+			api.defaults.headers['Authorization'] = `Bearer ${token}`;
+			setUser({ id, name, email });
+
+			setLoadingAuth(false);
+		} catch (err) {
+			console.log('ERRO AO LOGAR: ', err);
+			setLoadingAuth(false);
+		}
+	}
 	return (
 		<AuthContext.Provider
-			value={{ signed: !!user, user, signUp, loadingAuth }}
+			value={{ signed: !!user, user, signUp, signIn, loadingAuth }}
 		>
 			{children}
 		</AuthContext.Provider>

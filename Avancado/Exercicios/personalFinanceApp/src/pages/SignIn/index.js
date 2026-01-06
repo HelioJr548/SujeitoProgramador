@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { ActivityIndicator, Platform } from 'react-native';
 import {
 	Background,
 	Container,
@@ -11,22 +11,44 @@ import {
 	LinkText,
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../contexts/auth';
 
 export default function SignIn() {
 	const navigation = useNavigation();
+	const { signIn, loadingAuth } = useContext(AuthContext);
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	function handleLogin() {
+		signIn(email, password);
+	}
 
 	return (
 		<Background>
 			<Container behavior={'padding'} enabled>
 				<Logo source={require('../../assets/Logo.png')} />
 				<AreaInput>
-					<Input placeholder="Seu email" />
+					<Input
+						placeholder="Seu email"
+						value={email}
+						onChangeText={setEmail}
+					/>
 
-					<Input placeholder="Sua senha" />
+					<Input
+						placeholder="Sua senha"
+						value={password}
+						onChangeText={setPassword}
+						secureTextEntry={true}
+					/>
 				</AreaInput>
 
-				<SubmitButton activeOpacity={0.8}>
-					<SubmitText>Acessar</SubmitText>
+				<SubmitButton activeOpacity={0.8} onPress={handleLogin}>
+					{loadingAuth ? (
+						<ActivityIndicator color="#FFF" />
+					) : (
+						<SubmitText>Acessar</SubmitText>
+					)}
 				</SubmitButton>
 
 				<Link onPress={() => navigation.navigate('SignUp')}>
