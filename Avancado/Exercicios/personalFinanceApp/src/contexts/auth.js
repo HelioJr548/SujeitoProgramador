@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useMemo } from 'react';
 import api from '../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -89,20 +89,21 @@ function AuthProvider({ children }) {
 		});
 	}
 
+	const value = useMemo(
+		() => ({
+			signed: !!user,
+			user,
+			signUp,
+			signIn,
+			signOut,
+			loadingAuth,
+			loading,
+		}),
+		[user, loadingAuth, loading]
+	);
+
 	return (
-		<AuthContext.Provider
-			value={{
-				signed: !!user,
-				user,
-				signUp,
-				signIn,
-				signOut,
-				loadingAuth,
-				loading,
-			}}
-		>
-			{children}
-		</AuthContext.Provider>
+		<AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 	);
 }
 
