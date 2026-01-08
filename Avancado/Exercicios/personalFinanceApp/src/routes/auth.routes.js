@@ -20,13 +20,16 @@ function AuthRoutes() {
 				component={SignUp}
 				options={{
 					headerStyle: {
-						backgroundColor: '#3b3dbf',
-						borderBottomWidth: 1,
-						borderBottomColor: '#00b94a',
+						backgroundColor: '#2861ff', // ✅ Cor sólida (sem alpha)
 					},
 					headerTintColor: '#fff',
-					headerTitle: 'Voltar',
+					headerTitle: 'Criar conta', // ✅ Título descritivo
 					headerBackTitleVisible: false,
+					headerTitleStyle: {
+						fontWeight: '600', // ✅ Tipografia premium
+						fontSize: 17,
+					},
+					headerShadowVisible: false, // ✅ Sem sombra no iOS
 				}}
 			/>
 		</AuthStack.Navigator>

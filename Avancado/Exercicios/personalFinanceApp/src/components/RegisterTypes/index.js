@@ -15,15 +15,20 @@ export default function RegisterTypes({ type, sendTypeChanged }) {
 				checked={typeChecked === 'receita'}
 				onPress={() => changeType('receita')}
 			>
-				<Feather name="arrow-up" size={25} color="#121212" />
-				<RegisterLabel>Receita</RegisterLabel>
+				<Feather name="arrow-up" size={26} color="#6366f1" />
+				<RegisterLabel checked={typeChecked === 'receita'}>
+					Receita
+				</RegisterLabel>
 			</RegisterTypeButton>
+
 			<RegisterTypeButton
 				checked={typeChecked === 'despesa'}
 				onPress={() => changeType('despesa')}
 			>
-				<Feather name="arrow-down" size={25} color="#121212" />
-				<RegisterLabel>Despesa</RegisterLabel>
+				<Feather name="arrow-down" size={26} color="#6366f1" />
+				<RegisterLabel checked={typeChecked === 'despesa'}>
+					Despesa
+				</RegisterLabel>
 			</RegisterTypeButton>
 		</RegisterContainer>
 	);

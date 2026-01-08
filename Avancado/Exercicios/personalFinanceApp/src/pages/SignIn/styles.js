@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const Background = styled.View`
 	flex: 1;
-	background-color: #567adbff;
+	background-color: #2861ffff;
 	padding-top: 35px;
 `;
 
@@ -13,47 +13,50 @@ export const Container = styled.KeyboardAvoidingView`
 `;
 
 export const Logo = styled.Image`
-	margin-bottom: 25px;
+	margin-bottom: 40px;
 `;
 
 export const AreaInput = styled.View`
-	/* flex-direction: row; */
 	align-items: center;
-	gap: 15px;
+	gap: 18px;
 	width: 100%;
-	margin-bottom: 20px;
+	margin-bottom: 32px;
 `;
 
 export const Input = styled.TextInput`
-	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0.95);
 	width: 90%;
-	font-size: 16px;
-	padding: 10px;
-	border-radius: 5px;
-	color: #121212;
-	/* margin-bottom: 15px */
+	height: 56px;
+	font-size: 17px;
+	padding: 0 20px;
+	border-radius: 16px;
+	color: #1e293b;
+	border-width: 1px;
+	border-color: rgba(255, 255, 255, 0.3);
 `;
 
 export const SubmitButton = styled.TouchableOpacity`
 	width: 90%;
-	height: 45;
-	border-radius: 8px;
-	background-color: #3b3dbf;
-	margin-top: 10px;
+	height: 56px;
+	border-radius: 20px;
+	background-color: #ffffff;
+	margin-top: 16px;
 	align-items: center;
 	justify-content: center;
 `;
 
 export const SubmitText = styled.Text`
-	color: #fff;
-	font-size: 20px;
+	color: #6366f1;
+	font-size: 18px;
+	font-weight: 700;
 `;
 
 export const Link = styled.TouchableOpacity`
-	margin: 10px 0;
+	margin: 24px 0;
 `;
 
 export const LinkText = styled.Text`
-	color: #ffffffff;
-	font-size: 14px;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 500;
 `;

@@ -39,8 +39,9 @@ export default function HistoricoList({ data, deleteItem }) {
 						/>
 						<TipoText>{data.type}</TipoText>
 					</IconView>
-
-					<Description>- {data.description}</Description>
+					<Description numberOfLines={1}>
+						{data.description}
+					</Description>
 				</Tipo>
 
 				<ValorText>R$ {data.value}</ValorText>

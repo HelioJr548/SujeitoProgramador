@@ -1,30 +1,36 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const Background = styled(SafeAreaView)`
 	flex: 1;
-	background-color: #f0f4ff;
+	background-color: #f8fafc;
 `;
+
 export const Input = styled.TextInput`
-	height: 50px;
-	width: 90%;
-	background-color: #fff;
+	height: 60px;
+	width: 92%;
+	background-color: #ffffff;
 	font-size: 17px;
-	padding: 0 8px;
-	margin-bottom: 14px;
-	border-radius: 4px;
+	padding: 0 20px;
+	margin-bottom: 20px;
+	border-radius: 16px;
+	border-width: 1px;
+	border-color: rgba(99, 102, 241, 0.2);
 `;
+
 export const SubmitButton = styled.TouchableOpacity`
-	width: 90%;
-	height: 50px;
+	width: 92%;
+	height: 60px;
 	align-items: center;
 	justify-content: center;
-	background-color: #00b94a;
-	border-radius: 4px;
-	margin-top: 14px;
+	background-color: #6366f1;
+	border-radius: 20px;
+	margin-top: 24px;
 `;
+
 export const SubmitText = styled.Text`
-	color: #fff;
-	font-size: 21px;
-	font-weight: bold;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 0.3px;
 `;
