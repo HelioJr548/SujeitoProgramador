@@ -33,6 +33,7 @@
 		"collectCoverage": true,
 		"collectCoverageFrom": [
 			"**/*.{ts,tsx}",
+			"!index.ts",
 			"!**/coverage/**",
 			"!**/node_modules/**",
 			"!**/babel.config.js",
