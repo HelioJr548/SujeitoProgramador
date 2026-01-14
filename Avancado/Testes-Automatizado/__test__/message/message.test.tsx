@@ -11,7 +11,7 @@ describe('Component Message', () => {
 		);
 	});
 
-	it('should change messasge on click button', () => {
+	it('should change messasge on click button', async () => {
 		render(<Message />);
 
 		expect(screen.getByTestId('message').props.children).toBe(
@@ -20,8 +20,11 @@ describe('Component Message', () => {
 
 		fireEvent.press(screen.getByText('Acessar'));
 
-		expect(screen.getByTestId('message').props.children).toBe(
-			'Bem vindo Helio'
-		);
+		// expect(screen.getByTestId('message').props.children).toBe(
+		// 	'Bem vindo Helio'
+		// );
+
+		const text = await screen.findByText('Bem vindo Helio');
+		expect(text.props.children).toBe('Bem vindo Helio');
 	});
 });
