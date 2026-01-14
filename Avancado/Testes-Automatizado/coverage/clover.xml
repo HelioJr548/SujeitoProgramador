@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1768407561646" clover="3.2.0">
-  <project timestamp="1768407561647" name="All files">
-    <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4" elements="11" coveredelements="11" complexity="0" loc="7" ncloc="7" packages="2" files="2" classes="2"/>
+<coverage generated="1768411133397" clover="3.2.0">
+  <project timestamp="1768411133398" name="All files">
+    <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="6" elements="18" coveredelements="18" complexity="0" loc="10" ncloc="10" packages="2" files="3" classes="3"/>
     <package name="Testes-Automatizado">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="App.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\App.tsx">
@@ -14,7 +14,13 @@
       </file>
     </package>
     <package name="Testes-Automatizado.src">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+      <file name="Message.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\src\Message.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
       <file name="Title.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\src\Title.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="4" count="8" type="stmt"/>
