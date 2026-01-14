@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1768337092797" clover="3.2.0">
-  <project timestamp="1768337092797" name="All files">
-    <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="4" coveredelements="3" complexity="0" loc="3" ncloc="3" packages="1" files="2" classes="2"/>
+<coverage generated="1768405627876" clover="3.2.0">
+  <project timestamp="1768405627876" name="All files">
+    <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3" elements="9" coveredelements="8" complexity="0" loc="6" ncloc="6" packages="1" files="2" classes="2"/>
     <file name="App.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\App.tsx">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <line num="5" count="1" type="stmt"/>
-      <line num="13" count="1" type="stmt"/>
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <line num="6" count="6" type="stmt"/>
+      <line num="8" count="6" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="26" count="2" type="stmt"/>
+      <line num="36" count="1" type="stmt"/>
     </file>
     <file name="index.ts" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\index.ts">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
