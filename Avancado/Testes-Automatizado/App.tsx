@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Title from './src/Title';
 import Message from './src/Message';
+import Game from './src/Game';
 
 export default function App() {
 	const [counter, setCounter] = useState(0);
@@ -33,6 +34,8 @@ export default function App() {
 			</View>
 
 			<Message />
+
+			<Game />
 
 			<StatusBar style="auto" />
 		</View>
