@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import api from './services/api';
 import { useEffect, useState } from 'react';
 
@@ -28,6 +28,18 @@ export default function Game() {
 		fetchGame();
 	}, []);
 
+	async function handleFetchGame() {
+		try {
+			const { data } = await api.get('/next-api/?api=game&id=2');
+			setGame({
+				title: data.title,
+				image_url: data.image_url,
+			});
+		} catch (error) {
+			setErrorMsg('Erro ao buscar dados');
+		}
+	}
+
 	return (
 		<View style={styles.container}>
 			{game && (
@@ -40,6 +52,8 @@ export default function Game() {
 					<Text>{game.title}</Text>
 				</>
 			)}
+
+			<Button title="Mudar game" onPress={handleFetchGame} />
 
 			{errorMsg !== '' && <Text>{errorMsg}</Text>}
 		</View>
