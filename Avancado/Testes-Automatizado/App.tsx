@@ -2,8 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Title from './src/Title';
-import Message from './src/Message';
-import Game from './src/Game';
+import Welcome from './src/Welcome';
 
 export default function App() {
 	const [counter, setCounter] = useState(0);
@@ -33,9 +32,7 @@ export default function App() {
 				</TouchableOpacity>
 			</View>
 
-			<Message />
-
-			<Game />
+			<Welcome handleGetUser={() => console.log('CLICOU')} />
 
 			<StatusBar style="auto" />
 		</View>

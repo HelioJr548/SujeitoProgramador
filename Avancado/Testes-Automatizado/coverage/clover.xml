@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1768423695679" clover="3.2.0">
-  <project timestamp="1768423695680" name="All files">
-    <metrics statements="36" coveredstatements="36" conditionals="12" coveredconditionals="12" methods="16" coveredmethods="16" elements="64" coveredelements="64" complexity="0" loc="36" ncloc="36" packages="3" files="6" classes="6"/>
+<coverage generated="1768493387027" clover="3.2.0">
+  <project timestamp="1768493387027" name="All files">
+    <metrics statements="47" coveredstatements="47" conditionals="16" coveredconditionals="16" methods="19" coveredmethods="19" elements="82" coveredelements="82" complexity="0" loc="47" ncloc="47" packages="3" files="7" classes="7"/>
     <package name="Testes-Automatizado">
-      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="App.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\App.tsx">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
-        <line num="45" count="1" type="stmt"/>
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
       </file>
     </package>
     <package name="Testes-Automatizado.src">
-      <metrics statements="30" coveredstatements="30" conditionals="12" coveredconditionals="12" methods="13" coveredmethods="13"/>
+      <metrics statements="40" coveredstatements="40" conditionals="16" coveredconditionals="16" methods="15" coveredmethods="15"/>
       <file name="Form.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\src\Form.tsx">
         <metrics statements="10" coveredstatements="10" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
         <line num="5" count="7" type="stmt"/>
@@ -30,39 +31,52 @@
       </file>
       <file name="Game.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\src\Game.tsx">
         <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
-        <line num="11" count="14" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
-        <line num="14" count="14" type="stmt"/>
-        <line num="16" count="7" type="stmt"/>
-        <line num="17" count="7" type="stmt"/>
+        <line num="11" count="8" type="stmt"/>
+        <line num="12" count="8" type="stmt"/>
+        <line num="14" count="8" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="24" count="3" type="stmt"/>
-        <line num="28" count="7" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
         <line num="32" count="2" type="stmt"/>
         <line num="33" count="2" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
-        <line num="43" count="14" type="stmt"/>
-        <line num="63" count="2" type="stmt"/>
+        <line num="43" count="8" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
       </file>
       <file name="Message.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\src\Message.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
-        <line num="5" count="9" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="13" count="9" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
       </file>
       <file name="Title.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\src\Title.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="8" type="stmt"/>
+        <line num="4" count="9" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
+      </file>
+      <file name="Welcome.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\src\Welcome.tsx">
+        <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="9" count="13" type="stmt"/>
+        <line num="10" count="13" type="stmt"/>
+        <line num="13" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="23" count="13" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
       </file>
     </package>
     <package name="Testes-Automatizado.src.services">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="api.ts" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizado\src\services\api.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="2" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
       </file>
     </package>
   </project>

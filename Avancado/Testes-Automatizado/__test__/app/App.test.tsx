@@ -48,4 +48,17 @@ describe('App Componente testes', () => {
 		const counterText = getByTestId('counter');
 		expect(counterText.props.children).toBe(-1);
 	});
+
+	it('should render the welcome component', () => {
+		const { getByPlaceholderText, getByText } = render(<App />);
+
+		const input = getByPlaceholderText('Digite seu nome...');
+		const loginButton = getByText(/login/i);
+
+		fireEvent.changeText(input, 'Helio');
+		fireEvent.press(loginButton);
+
+		expect(input).toBeTruthy();
+		expect(loginButton).toBeTruthy();
+	});
 });
