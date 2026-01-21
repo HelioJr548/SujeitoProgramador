@@ -14,6 +14,10 @@ export default function Home() {
 				title="Perfil"
 				onPress={() => navigation.navigate('Profile')}
 			/>
+			<Button
+				title="User"
+				onPress={() => navigation.navigate('User', { name: 'Helio' })}
+			/>
 		</View>
 	);
 }

@@ -1,3 +1,5 @@
+import { useRoute } from '@react-navigation/native';
+
 export const mockNavigate = jest.fn();
 export const mockGoBack = jest.fn();
 
@@ -11,6 +13,9 @@ jest.mock('@react-navigation/native', () => {
 			goBack: mockGoBack,
 		}),
 		NavigationContainer: ({ children }) => <>{children}</>,
+		useRoute: () => ({
+			params: { name: 'Helio' },
+		}),
 	};
 });
 

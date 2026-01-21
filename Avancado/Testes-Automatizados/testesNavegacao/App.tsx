@@ -5,12 +5,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/Home';
 import Profile from './src/Profile';
+import User from './src/User';
 
 const Stack = createNativeStackNavigator<TStackParamList>();
 
 export type TStackParamList = {
 	Home: undefined;
 	Profile: undefined;
+	User: { name: string };
 };
 
 export default function App() {
@@ -19,16 +21,8 @@ export default function App() {
 			<Stack.Navigator>
 				<Stack.Screen name="Home" component={Home} />
 				<Stack.Screen name="Profile" component={Profile} />
+				<Stack.Screen name="User" component={User} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});

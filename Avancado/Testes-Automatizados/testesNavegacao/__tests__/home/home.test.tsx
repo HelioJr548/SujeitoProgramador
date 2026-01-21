@@ -28,4 +28,18 @@ describe('Test component Home', () => {
 			expect(navigate).toHaveBeenLastCalledWith('Profile');
 		});
 	});
+
+	it('should navigate to user screen when butotn is pressed', async () => {
+		const { getByText } = render(<Home />);
+
+		const button = getByText('User');
+		fireEvent.press(button);
+
+		const { navigate } =
+			useNavigation<NativeStackNavigationProp<TStackParamList>>();
+
+		await waitFor(() => {
+			expect(navigate).toHaveBeenCalledWith('User', { name: 'Helio' });
+		});
+	});
 });
