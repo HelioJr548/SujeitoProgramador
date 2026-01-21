@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1769000347279" clover="3.2.0">
-  <project timestamp="1769000347280" name="All files">
-    <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7" elements="21" coveredelements="21" complexity="0" loc="14" ncloc="14" packages="4" files="4" classes="4"/>
+<coverage generated="1769002182945" clover="3.2.0">
+  <project timestamp="1769002182946" name="All files">
+    <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="9" elements="27" coveredelements="27" complexity="0" loc="18" ncloc="18" packages="5" files="5" classes="5"/>
     <package name="testesNavegacao">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="App.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizados\testesNavegacao\App.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="testesNavegacao.src.Contato">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizados\testesNavegacao\src\Contato\index.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
       </file>
     </package>
     <package name="testesNavegacao.src.Home">
-      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="index.tsx" path="C:\Users\Dell\OneDrive\Área de Trabalho\h_dev\react-native\SujeitoProgramador\Avancado\Testes-Automatizados\testesNavegacao\src\Home\index.tsx">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="8" count="3" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
       </file>
     </package>
     <package name="testesNavegacao.src.Profile">

@@ -18,6 +18,12 @@ export default function Home() {
 				title="User"
 				onPress={() => navigation.navigate('User', { name: 'Helio' })}
 			/>
+			<Button
+				title="Contato"
+				onPress={() =>
+					navigation.navigate('Contato', { telefone: '99999999' })
+				}
+			/>
 		</View>
 	);
 }
