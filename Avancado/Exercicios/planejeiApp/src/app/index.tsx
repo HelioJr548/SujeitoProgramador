@@ -1,4 +1,5 @@
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, StatusBar, View } from 'react-native';
+import colors from '../constants/colors';
 
 export default function Index() {
 	return (
@@ -7,9 +8,14 @@ export default function Index() {
 				flex: 1,
 				justifyContent: 'center',
 				alignItems: 'center',
+				backgroundColor: colors.zinc,
 			}}
 		>
-			<ActivityIndicator size="large" color="#000" />
+			<StatusBar
+				backgroundColor={colors.orange}
+				barStyle="light-content"
+			/>
+			<ActivityIndicator size="large" color={colors.orange} />
 		</View>
 	);
 }
