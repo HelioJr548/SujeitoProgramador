@@ -1,5 +1,7 @@
 import colors from '@/src/constants/colors';
+import { TSignUpFormData } from '@/src/hooks/useSignUp';
 import { Link } from 'expo-router';
+import { Control, FieldErrors, UseFormHandleSubmit } from 'react-hook-form';
 import {
 	Image,
 	ScrollView,
@@ -11,7 +13,21 @@ import {
 	View,
 } from 'react-native';
 
-export default function SignUpScreen() {
+interface ISignUpScreenProps {
+	control: Control<TSignUpFormData>;
+	handleSubmit: UseFormHandleSubmit<TSignUpFormData>;
+	onSubmit: (data: TSignUpFormData) => Promise<void>;
+	isSubmitting: boolean;
+	errors: FieldErrors<TSignUpFormData>;
+}
+
+export default function SignUpScreen({
+	control,
+	errors,
+	handleSubmit,
+	isSubmitting,
+	onSubmit,
+}: ISignUpScreenProps) {
 	return (
 		<ScrollView
 			style={{ backgroundColor: colors.zinc }}

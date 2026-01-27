@@ -1,21 +1,21 @@
 import { router, Stack } from 'expo-router';
 import { useEffect } from 'react';
+import { supabase } from '../config/supabase';
 
 export default function RootLayout() {
 	useEffect(() => {
-		const signed = false;
-		// Multiple fallbacks for maximum compatibility
-		const navigate = () => {
-			if (!signed) router.replace('/(auth)/signin/page');
-			else router.replace('/(panel)/home/page');
-		};
+		supabase.auth.onAuthStateChange((_event, session) => {
+			if (session) {
+				console.log('SESSION: ----------------');
+				console.log(session);
 
-		// Try immediate, fallback to RAF
-		if (typeof requestAnimationFrame === 'undefined') {
-			setTimeout(navigate, 0);
-		} else {
-			requestAnimationFrame(navigate);
-		}
+				router.replace('/(panel)/home/page');
+				return;
+			}
+
+			console.log('NÂO LOGADO');
+			router.replace('/(auth)/signin/page');
+		});
 	}, []);
 
 	return (
