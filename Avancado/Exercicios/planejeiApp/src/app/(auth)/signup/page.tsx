@@ -1,4 +1,4 @@
-import useSignup from '@/src/hooks/useSignUp';
+import useSignup from '@/src/hooks/useSignup';
 import SignUpScreen from '@/src/screens/signup';
 
 export default function SignUp() {

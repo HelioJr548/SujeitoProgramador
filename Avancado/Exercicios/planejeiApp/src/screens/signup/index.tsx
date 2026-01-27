@@ -1,7 +1,12 @@
 import colors from '@/src/constants/colors';
-import { TSignUpFormData } from '@/src/hooks/useSignUp';
+import { TSignUpFormData } from '@/src/hooks/useSignup';
 import { Link } from 'expo-router';
-import { Control, FieldErrors, UseFormHandleSubmit } from 'react-hook-form';
+import {
+	Control,
+	Controller,
+	FieldErrors,
+	UseFormHandleSubmit,
+} from 'react-hook-form';
 import {
 	Image,
 	ScrollView,
@@ -45,30 +50,110 @@ export default function SignUpScreen({
 					style={styles.logo}
 				/>
 
-				<View>
-					<TextInput
-						style={styles.input}
-						placeholder="Nome Completo..."
-						autoCapitalize="none"
-						placeholderTextColor={colors.gray50}
-					/>
-					<TextInput
-						style={styles.input}
-						placeholder="Digite seu email..."
-						autoCapitalize="none"
-						placeholderTextColor={colors.gray50}
+				<>
+					<Controller
+						control={control}
+						name="username"
+						defaultValue=""
+						render={({ field: { onChange, onBlur, value } }) => (
+							<View style={styles.inputContainer}>
+								<TextInput
+									style={styles.input}
+									placeholder="Nome Completo..."
+									autoCapitalize="none"
+									placeholderTextColor={colors.gray50}
+									value={value}
+									onBlur={onBlur}
+									onChangeText={onChange}
+								/>
+								{errors.username && (
+									<Text style={styles.errorText}>
+										{errors.username?.message}
+									</Text>
+								)}
+							</View>
+						)}
 					/>
 
-					<TextInput
-						style={styles.input}
-						placeholder="**********"
-						autoCapitalize="none"
-						secureTextEntry={true}
-						placeholderTextColor={colors.gray50}
+					<Controller
+						control={control}
+						name="email"
+						defaultValue=""
+						render={({ field: { onChange, onBlur, value } }) => (
+							<View style={styles.inputContainer}>
+								<TextInput
+									style={styles.input}
+									placeholder="Digite seu email..."
+									autoCapitalize="none"
+									placeholderTextColor={colors.gray50}
+									value={value}
+									onBlur={onBlur}
+									onChangeText={onChange}
+								/>
+								{errors.email && (
+									<Text style={styles.errorText}>
+										{errors.email?.message}
+									</Text>
+								)}
+							</View>
+						)}
 					/>
-				</View>
 
-				<TouchableOpacity style={styles.button}>
+					<Controller
+						control={control}
+						name="password"
+						defaultValue=""
+						render={({ field: { onChange, onBlur, value } }) => (
+							<View style={styles.inputContainer}>
+								<TextInput
+									style={styles.input}
+									placeholder="**********"
+									autoCapitalize="none"
+									secureTextEntry={true}
+									placeholderTextColor={colors.gray50}
+									value={value}
+									onBlur={onBlur}
+									onChangeText={onChange}
+								/>
+								{errors.password && (
+									<Text style={styles.errorText}>
+										{errors.password?.message}
+									</Text>
+								)}
+							</View>
+						)}
+					/>
+
+					<Controller
+						control={control}
+						name="confirmPassword"
+						defaultValue=""
+						render={({ field: { onChange, onBlur, value } }) => (
+							<View style={styles.inputContainer}>
+								<TextInput
+									style={styles.input}
+									placeholder="Digite novamente sua senha..."
+									autoCapitalize="none"
+									secureTextEntry={true}
+									placeholderTextColor={colors.gray50}
+									value={value}
+									onBlur={onBlur}
+									onChangeText={onChange}
+								/>
+								{errors.confirmPassword && (
+									<Text style={styles.errorText}>
+										{errors.confirmPassword?.message}
+									</Text>
+								)}
+							</View>
+						)}
+					/>
+				</>
+
+				<TouchableOpacity
+					style={styles.button}
+					onPress={handleSubmit(onSubmit)}
+				>
 					<Text style={styles.buttonText}>Criar conta</Text>
 				</TouchableOpacity>
 
@@ -98,7 +183,6 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: colors.gray100,
 		borderRadius: 4,
-		marginBottom: 12,
 		padding: 12,
 	},
 	button: {
@@ -117,5 +201,11 @@ const styles = StyleSheet.create({
 		color: colors.white,
 		marginTop: 14,
 		textAlign: 'center',
+	},
+	errorText: {
+		color: colors.red,
+	},
+	inputContainer: {
+		marginBottom: 12,
 	},
 });

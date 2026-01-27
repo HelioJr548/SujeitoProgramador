@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { authService } from '../services/auth-services';
@@ -22,6 +23,8 @@ const signUpSchema = z
 export type TSignUpFormData = z.infer<typeof signUpSchema>;
 
 const useSignup = () => {
+	const router = useRouter();
+
 	const {
 		control,
 		handleSubmit,
@@ -33,7 +36,10 @@ const useSignup = () => {
 	const onSubmit = async (data: TSignUpFormData) => {
 		try {
 			await authService.signUp(data.email, data.password, data.username);
+			router.replace('/(panel)/home/page');
 		} catch (err) {
+			console.log('FALHA AO CRIAR USUARIO');
+
 			console.log(err);
 		}
 	};
