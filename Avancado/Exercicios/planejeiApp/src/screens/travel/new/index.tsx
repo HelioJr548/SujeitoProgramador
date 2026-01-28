@@ -1,14 +1,22 @@
+import { DatePickerInput } from '@/src/components/calendar';
 import colors from '@/src/constants/colors';
 import { TTravelFormData } from '@/src/hooks/useCreateTravel';
 import { Feather } from '@expo/vector-icons';
 import { Link } from 'expo-router';
-import { Control, FieldErrors, UseFormHandleSubmit } from 'react-hook-form';
+import {
+	Control,
+	Controller,
+	FieldErrors,
+	UseFormHandleSubmit,
+	useWatch,
+} from 'react-hook-form';
 import {
 	Platform,
 	ScrollView,
 	StatusBar,
 	StyleSheet,
 	Text,
+	TextInput,
 	View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -28,6 +36,11 @@ export default function NewTravelScreen({
 	handleSubmit,
 	isSubmitting,
 }: INewTravelScreenProps) {
+	const startDate = useWatch({
+		control,
+		name: 'start_date',
+	});
+
 	return (
 		<SafeAreaView style={styles.safeArea}>
 			<StatusBar
@@ -50,6 +63,91 @@ export default function NewTravelScreen({
 				<Text style={styles.subTitle}>
 					Vamos cadastrar sua próxima viagem
 				</Text>
+
+				<Controller
+					control={control}
+					name="title"
+					render={({ field: { onChange, onBlur, value } }) => (
+						<View style={styles.field}>
+							<Text style={styles.label}>Objetivo da viagm</Text>
+							<TextInput
+								placeholder="Digite o titulo da viagem..."
+								value={value}
+								onBlur={onBlur}
+								onChangeText={onChange}
+								placeholderTextColor={colors.gray50}
+								style={styles.input}
+							/>
+						</View>
+					)}
+				/>
+
+				<Controller
+					control={control}
+					name="city"
+					render={({ field: { onChange, onBlur, value } }) => (
+						<View style={styles.field}>
+							<Text style={styles.label}>Cidade e estado</Text>
+							<TextInput
+								placeholder="Digite a cidade e o estado..."
+								value={value}
+								onBlur={onBlur}
+								onChangeText={onChange}
+								placeholderTextColor={colors.gray50}
+								style={styles.input}
+							/>
+						</View>
+					)}
+				/>
+
+				<Text style={styles.categoryDescription}>
+					Detalhes da viagem
+				</Text>
+
+				<Controller
+					control={control}
+					name="hotel_adress"
+					render={({ field: { onChange, onBlur, value } }) => (
+						<View style={styles.field}>
+							<Text style={styles.label}>Endereço do hotel</Text>
+							<TextInput
+								placeholder="Digite o endereço do hotel..."
+								value={value}
+								onBlur={onBlur}
+								onChangeText={onChange}
+								placeholderTextColor={colors.gray50}
+								style={styles.input}
+							/>
+						</View>
+					)}
+				/>
+
+				<Controller
+					control={control}
+					name="start_date"
+					render={({ field: { onChange, value } }) => (
+						<DatePickerInput
+							label="Selecione a data de ida"
+							value={value}
+							onChange={onChange}
+						/>
+					)}
+				/>
+
+				{startDate && (
+					<Controller
+						control={control}
+						name="end_date"
+						render={({ field: { onChange, value } }) => (
+							<DatePickerInput
+								label="Selecione a data de volta"
+								value={value}
+								onChange={onChange}
+								minDate={startDate}
+							/>
+						)}
+					/>
+				)}
 			</ScrollView>
 		</SafeAreaView>
 	);
@@ -76,5 +174,18 @@ const styles = StyleSheet.create({
 		marginVertical: 14,
 		color: colors.white,
 		fontWeight: '500',
+	},
+	input: {
+		backgroundColor: colors.white,
+		padding: 12,
+		borderRadius: 4,
+	},
+	field: { marginBottom: 12 },
+	label: { color: colors.white, marginBottom: 4, fontWeight: '600' },
+	categoryDescription: {
+		color: colors.white,
+		fontSize: 18,
+		fontWeight: '500',
+		marginVertical: 14,
 	},
 });
