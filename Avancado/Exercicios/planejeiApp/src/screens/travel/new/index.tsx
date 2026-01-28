@@ -11,12 +11,14 @@ import {
 	useWatch,
 } from 'react-hook-form';
 import {
+	ActivityIndicator,
 	Platform,
 	ScrollView,
 	StatusBar,
 	StyleSheet,
 	Text,
 	TextInput,
+	TouchableOpacity,
 	View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -78,6 +80,11 @@ export default function NewTravelScreen({
 								placeholderTextColor={colors.gray50}
 								style={styles.input}
 							/>
+							{errors.title && (
+								<Text style={styles.errorText}>
+									{errors.title?.message}
+								</Text>
+							)}
 						</View>
 					)}
 				/>
@@ -96,6 +103,11 @@ export default function NewTravelScreen({
 								placeholderTextColor={colors.gray50}
 								style={styles.input}
 							/>
+							{errors.city && (
+								<Text style={styles.errorText}>
+									{errors.city?.message}
+								</Text>
+							)}
 						</View>
 					)}
 				/>
@@ -118,6 +130,11 @@ export default function NewTravelScreen({
 								placeholderTextColor={colors.gray50}
 								style={styles.input}
 							/>
+							{errors.hotel_adress && (
+								<Text style={styles.errorText}>
+									{errors.hotel_adress?.message}
+								</Text>
+							)}
 						</View>
 					)}
 				/>
@@ -126,11 +143,18 @@ export default function NewTravelScreen({
 					control={control}
 					name="start_date"
 					render={({ field: { onChange, value } }) => (
-						<DatePickerInput
-							label="Selecione a data de ida"
-							value={value}
-							onChange={onChange}
-						/>
+						<>
+							<DatePickerInput
+								label="Selecione a data de ida"
+								value={value}
+								onChange={onChange}
+							/>
+							{errors.start_date && (
+								<Text style={styles.errorText}>
+									{errors.start_date?.message}
+								</Text>
+							)}
+						</>
 					)}
 				/>
 
@@ -139,15 +163,35 @@ export default function NewTravelScreen({
 						control={control}
 						name="end_date"
 						render={({ field: { onChange, value } }) => (
-							<DatePickerInput
-								label="Selecione a data de volta"
-								value={value}
-								onChange={onChange}
-								minDate={startDate}
-							/>
+							<>
+								<DatePickerInput
+									label="Selecione a data de volta"
+									value={value}
+									onChange={onChange}
+									minDate={startDate}
+								/>
+								{errors.end_date && (
+									<Text style={styles.errorText}>
+										{errors.end_date?.message}
+									</Text>
+								)}
+							</>
 						)}
 					/>
 				)}
+
+				<TouchableOpacity
+					style={styles.button}
+					onPress={handleSubmit(createNewTravel)}
+				>
+					<Text style={styles.buttonText}>
+						{isSubmitting ? (
+							<ActivityIndicator color={colors.white} size={30} />
+						) : (
+							'Cadastrar viagem'
+						)}
+					</Text>
+				</TouchableOpacity>
 			</ScrollView>
 		</SafeAreaView>
 	);
@@ -187,5 +231,19 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		fontWeight: '500',
 		marginVertical: 14,
+	},
+	button: {
+		backgroundColor: colors.orange,
+		padding: 12,
+		borderRadius: 4,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	buttonText: {
+		color: colors.white,
+		fontWeight: '500',
+	},
+	errorText: {
+		color: colors.red,
 	},
 });
