@@ -1,8 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
 import { supabase } from '../config/supabase';
+import { travelServices } from '../services/travel-services';
 
 const travelSchema = z.object({
 	title: z
@@ -13,7 +15,7 @@ const travelSchema = z.object({
 		.string()
 		.nonempty('A cidade / estado é obrigatório(a)')
 		.min(1, 'A cidade / estado é obrigatório(a)'),
-	hotel_adress: z
+	hotel_address: z
 		.string()
 		.nonempty('O endereço do hotel é obrigatório')
 		.min(1, 'O endereço do hotel é obrigatório'),
@@ -30,6 +32,7 @@ const useCreateTravel = () => {
 		control,
 		handleSubmit,
 		formState: { errors, isSubmitting },
+		reset,
 	} = useForm<TTravelFormData>({
 		resolver: zodResolver(travelSchema),
 	});
@@ -47,7 +50,16 @@ const useCreateTravel = () => {
 	});
 
 	const createNewTravel = async (data: TTravelFormData) => {
-		console.log(data);
+		if (!userId) return;
+
+		try {
+			await travelServices.createTravel(data, userId);
+			reset();
+			router.replace('/(panel)/home/page');
+		} catch (err) {
+			console.log('ERROR AO CADASTRAR VIAGEM');
+			console.log(err);
+		}
 	};
 
 	return { control, handleSubmit, errors, isSubmitting, createNewTravel };

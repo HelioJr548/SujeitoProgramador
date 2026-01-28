@@ -71,7 +71,7 @@ export default function NewTravelScreen({
 					name="title"
 					render={({ field: { onChange, onBlur, value } }) => (
 						<View style={styles.field}>
-							<Text style={styles.label}>Objetivo da viagm</Text>
+							<Text style={styles.label}>Objetivo da viagem</Text>
 							<TextInput
 								placeholder="Digite o titulo da viagem..."
 								value={value}
@@ -118,7 +118,7 @@ export default function NewTravelScreen({
 
 				<Controller
 					control={control}
-					name="hotel_adress"
+					name="hotel_address"
 					render={({ field: { onChange, onBlur, value } }) => (
 						<View style={styles.field}>
 							<Text style={styles.label}>Endereço do hotel</Text>
@@ -130,9 +130,9 @@ export default function NewTravelScreen({
 								placeholderTextColor={colors.gray50}
 								style={styles.input}
 							/>
-							{errors.hotel_adress && (
+							{errors.hotel_address && (
 								<Text style={styles.errorText}>
-									{errors.hotel_adress?.message}
+									{errors.hotel_address?.message}
 								</Text>
 							)}
 						</View>
