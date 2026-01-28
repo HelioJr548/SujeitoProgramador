@@ -8,6 +8,7 @@ import {
 	UseFormHandleSubmit,
 } from 'react-hook-form';
 import {
+	ActivityIndicator,
 	Image,
 	ScrollView,
 	StatusBar,
@@ -154,7 +155,13 @@ export default function SignUpScreen({
 					style={styles.button}
 					onPress={handleSubmit(onSubmit)}
 				>
-					<Text style={styles.buttonText}>Criar conta</Text>
+					<Text style={styles.buttonText}>
+						{isSubmitting ? (
+							<ActivityIndicator size={20} color={colors.white} />
+						) : (
+							'Criar conta'
+						)}
+					</Text>
 				</TouchableOpacity>
 
 				<Link href="/(auth)/signin/page" style={styles.link}>
