@@ -8,11 +8,33 @@ type TCreateTravelPayLoad = {
 	end_date: string;
 };
 
+export type TTravel = {
+	id: string;
+	title: string;
+	city: string;
+	hotel_address: string;
+	start_date: string;
+	end_date: string;
+	created_at: string;
+};
+
 export const travelServices = {
 	createTravel: async (payLoad: TCreateTravelPayLoad, user_id: string) => {
 		const { data, error } = await supabase
 			.from('travels')
 			.insert([{ ...payLoad, user_id }]);
+
+		if (error) throw error;
+
+		return data;
+	},
+
+	getTravels: async (user_id: string): Promise<TTravel[]> => {
+		const { data, error } = await supabase
+			.from('travels')
+			.select('*')
+			.eq('user_id', user_id)
+			.order('start_date', { ascending: true });
 
 		if (error) throw error;
 
