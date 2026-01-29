@@ -4,5 +4,5 @@ import HomeScreen from '@/src/screens/home';
 export default function Home() {
 	const { travels, loading } = useTravelList();
 
-	return <HomeScreen />;
+	return <HomeScreen travels={travels} loading={loading} />;
 }

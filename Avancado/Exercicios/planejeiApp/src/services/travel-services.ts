@@ -30,10 +30,13 @@ export const travelServices = {
 	},
 
 	getTravels: async (user_id: string): Promise<TTravel[]> => {
+		const today = new Date().toISOString().split('T')[0]; // formato YYYY-MM-DD
+
 		const { data, error } = await supabase
 			.from('travels')
 			.select('*')
 			.eq('user_id', user_id)
+			.gte('end_date', today)
 			.order('start_date', { ascending: true });
 
 		if (error) throw error;
