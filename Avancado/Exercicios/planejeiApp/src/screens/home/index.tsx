@@ -4,7 +4,7 @@ import { TTravel } from '@/src/services/travel-services';
 import { Feather } from '@expo/vector-icons';
 import { differenceInCalendarDays, format, isBefore, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import {
 	FlatList,
 	Platform,
@@ -43,7 +43,10 @@ export default function HomeScreen({ travels, loading }: IHomeScreenProps) {
 	};
 
 	const renderTripCard = (item: TTravel) => (
-		<TouchableOpacity style={styles.secondaryCard}>
+		<TouchableOpacity
+			style={styles.secondaryCard}
+			onPress={() => router.push(`/(panel)/detail/${item.id}`)}
+		>
 			<View style={styles.cardContent}>
 				<Text style={styles.cardDateText}>
 					{formatDateRange(item.start_date, item.end_date)}
@@ -115,7 +118,12 @@ export default function HomeScreen({ travels, loading }: IHomeScreenProps) {
 						<Text style={styles.featuredCityText}>
 							{nextTravel.city}
 						</Text>
-						<TouchableOpacity style={styles.mainActionButton}>
+						<TouchableOpacity
+							style={styles.mainActionButton}
+							onPress={() =>
+								router.push(`/(panel)/detail/${nextTravel.id}`)
+							}
+						>
 							<Text style={styles.mainActionButtonText}>
 								Ver detalhes
 							</Text>

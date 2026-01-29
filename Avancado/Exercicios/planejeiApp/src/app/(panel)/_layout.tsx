@@ -12,6 +12,7 @@ export default function AuthLayout() {
 				name="travel/new/page"
 				options={{ headerShown: false }}
 			/>
+			<Stack.Screen name="detail/[id]" options={{ headerShown: false }} />
 		</Stack>
 	);
 }
