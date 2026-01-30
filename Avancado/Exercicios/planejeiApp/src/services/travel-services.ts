@@ -43,4 +43,12 @@ export const travelServices = {
 
 		return data;
 	},
+
+	getTravelById: async (travel_id: string) => {
+		const {} = await supabase
+			.from('travels')
+			.select('*')
+			.eq('id', travel_id)
+			.single();
+	},
 };
