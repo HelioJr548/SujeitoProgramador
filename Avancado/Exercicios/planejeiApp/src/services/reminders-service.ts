@@ -7,11 +7,7 @@ interface ICreateReminderPayload {
 
 export const remindersService = {
 	create: async (payload: ICreateReminderPayload) => {
-		const { error } = await supabase.from('reminders').insert([
-			{
-				payload,
-			},
-		]);
+		const { error } = await supabase.from('reminders').insert(payload);
 
 		if (error) throw error;
 	},

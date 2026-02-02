@@ -15,8 +15,10 @@ const useReminders = () => {
 				travel_id: id,
 				description: newReminder,
 			});
+
+			setNewReminder('');
 		} catch (err) {
-			console.log(`ERRO AO CADASTRAR LEMBRETE: ${err}`);
+			console.log(`ERRO AO CADASTRAR LEMBRETE: ${err.message}`);
 		}
 
 		console.log(`ADICIONAR LEMBRETE: ${newReminder}`);
