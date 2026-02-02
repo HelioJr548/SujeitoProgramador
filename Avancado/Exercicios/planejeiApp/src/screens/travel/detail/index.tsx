@@ -21,12 +21,19 @@ interface ITravelDetialScreenProps {
 	loading: boolean;
 	travel: TTravel | null;
 	handleDeleteTravel: () => Promise<void>;
+	remindersHook: {
+		loading: boolean;
+		newReminder: string;
+		setNewReminder: React.Dispatch<React.SetStateAction<string>>;
+		addReminder: () => Promise<void>;
+	};
 }
 
 export function TravelDetailScreen({
 	loading,
 	travel,
 	handleDeleteTravel,
+	remindersHook,
 }: ITravelDetialScreenProps) {
 	if (loading || !travel) return <Index />;
 
@@ -122,8 +129,17 @@ export function TravelDetailScreen({
 							placeholder="Digite um lembrete"
 							placeholderTextColor={colors.gray100}
 							style={styles.reminderInput}
+							value={remindersHook.newReminder}
+							onChangeText={(value) =>
+								remindersHook.setNewReminder(value)
+							}
 						/>
-						<Pressable style={styles.addButton}>
+						<Pressable
+							style={styles.addButton}
+							onPress={async () =>
+								await remindersHook.addReminder()
+							}
+						>
 							<Feather
 								name="plus"
 								size={24}
