@@ -1,5 +1,6 @@
 import Index from '@/src/app';
 import colors from '@/src/constants/colors';
+import { TReminder } from '@/src/services/reminders-service';
 import { TTravel } from '@/src/services/travel-services';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { format, parseISO } from 'date-fns';
@@ -26,6 +27,7 @@ interface ITravelDetialScreenProps {
 		newReminder: string;
 		setNewReminder: React.Dispatch<React.SetStateAction<string>>;
 		addReminder: () => Promise<void>;
+		reminders: TReminder[];
 	};
 }
 
@@ -79,89 +81,83 @@ export function TravelDetailScreen({
 					</Text>
 				</View>
 
-				<ScrollView showsVerticalScrollIndicator={false}>
-					<View style={styles.infoContainer}>
-						<View style={styles.infoRow}>
-							<MaterialCommunityIcons
-								name="airplane-takeoff"
-								size={24}
-								color={colors.white}
-							></MaterialCommunityIcons>
-							<Text style={styles.infoDate}>
-								{formattedStartDate}{' '}
-							</Text>
-						</View>
-						<View style={styles.infoRow}>
-							<MaterialCommunityIcons
-								name="airplane-landing"
-								size={24}
-								color={colors.white}
-							></MaterialCommunityIcons>
-							<Text style={styles.infoDate}>
-								{formattedEndDate}{' '}
-							</Text>
-						</View>
-					</View>
-
-					<View style={styles.cardContainer}>
-						<Text style={styles.cardLabel}>Cidade:</Text>
-						<Text style={styles.cardValue}>{travel?.city}</Text>
-
-						<Text style={styles.cardLabel}>Hotel:</Text>
-						<Text style={styles.cardValue}>
-							{travel?.hotel_address}
+				<View style={styles.infoContainer}>
+					<View style={styles.infoRow}>
+						<MaterialCommunityIcons
+							name="airplane-takeoff"
+							size={24}
+							color={colors.white}
+						></MaterialCommunityIcons>
+						<Text style={styles.infoDate}>
+							{formattedStartDate}{' '}
 						</Text>
-
-						<Pressable
-							onPress={async () => await handleDeleteTravel()}
-							style={styles.deleteButton}
-						>
-							<Text style={styles.deleteButtonText}>
-								Excluir viagem
-							</Text>
-						</Pressable>
 					</View>
-
-					<Text style={styles.sectionTitle}>Lembretes</Text>
-
-					<View style={styles.reminderInputContainer}>
-						<TextInput
-							placeholder="Digite um lembrete"
-							placeholderTextColor={colors.gray100}
-							style={styles.reminderInput}
-							value={remindersHook.newReminder}
-							onChangeText={(value) =>
-								remindersHook.setNewReminder(value)
-							}
-						/>
-						<Pressable
-							style={styles.addButton}
-							onPress={async () =>
-								await remindersHook.addReminder()
-							}
-						>
-							<Feather
-								name="plus"
-								size={24}
-								color={colors.white}
-							/>
-						</Pressable>
+					<View style={styles.infoRow}>
+						<MaterialCommunityIcons
+							name="airplane-landing"
+							size={24}
+							color={colors.white}
+						></MaterialCommunityIcons>
+						<Text style={styles.infoDate}>{formattedEndDate} </Text>
 					</View>
+				</View>
 
+				<View style={styles.cardContainer}>
+					<Text style={styles.cardLabel}>Cidade:</Text>
+					<Text style={styles.cardValue}>{travel?.city}</Text>
+
+					<Text style={styles.cardLabel}>Hotel:</Text>
+					<Text style={styles.cardValue}>
+						{travel?.hotel_address}
+					</Text>
+
+					<Pressable
+						onPress={async () => await handleDeleteTravel()}
+						style={styles.deleteButton}
+					>
+						<Text style={styles.deleteButtonText}>
+							Excluir viagem
+						</Text>
+					</Pressable>
+				</View>
+
+				<Text style={styles.sectionTitle}>Lembretes</Text>
+
+				<View style={styles.reminderInputContainer}>
+					<TextInput
+						placeholder="Digite um lembrete"
+						placeholderTextColor={colors.gray100}
+						style={styles.reminderInput}
+						value={remindersHook.newReminder}
+						onChangeText={(value) =>
+							remindersHook.setNewReminder(value)
+						}
+					/>
+					<Pressable
+						style={styles.addButton}
+						onPress={async () => await remindersHook.addReminder()}
+					>
+						<Feather name="plus" size={24} color={colors.white} />
+					</Pressable>
+				</View>
+
+				<ScrollView showsVerticalScrollIndicator={false}>
 					<View style={styles.spacingVertical}>
-						<View style={styles.reminderItem}>
-							<Text style={styles.reminderText}>
-								Lembrar de pegar a chave do AP
-							</Text>
+						{remindersHook.reminders.map((item) => (
+							<View style={styles.reminderItem} key={item.id}>
+								<Text style={styles.reminderText}>
+									{item.description}
+								</Text>
 
-							<Pressable>
-								<Feather
-									name="trash"
-									size={20}
-									color={colors.red}
-								/>
-							</Pressable>
-						</View>
+								<Pressable>
+									<Feather
+										name="trash"
+										size={20}
+										color={colors.red}
+									/>
+								</Pressable>
+							</View>
+						))}
 					</View>
 				</ScrollView>
 			</View>
