@@ -30,4 +30,13 @@ export const remindersService = {
 
 		if (error) throw error;
 	},
+
+	delete: async (reminder_id: string) => {
+		const { error } = await supabase
+			.from('reminders')
+			.delete()
+			.eq('id', reminder_id);
+
+		if (error) throw error;
+	},
 };

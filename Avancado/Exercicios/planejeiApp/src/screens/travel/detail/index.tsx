@@ -28,6 +28,7 @@ interface ITravelDetialScreenProps {
 		setNewReminder: React.Dispatch<React.SetStateAction<string>>;
 		addReminder: () => Promise<void>;
 		reminders: TReminder[];
+		deleteReminder: (reminder_id: string) => Promise<void>;
 	};
 }
 
@@ -149,7 +150,13 @@ export function TravelDetailScreen({
 									{item.description}
 								</Text>
 
-								<Pressable>
+								<Pressable
+									onPress={async () =>
+										await remindersHook.deleteReminder(
+											item.id,
+										)
+									}
+								>
 									<Feather
 										name="trash"
 										size={20}

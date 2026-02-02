@@ -39,12 +39,29 @@ const useReminders = () => {
 		console.log(`ADICIONAR LEMBRETE: ${newReminder}`);
 	};
 
+	const deleteReminder = async (reminder_id: string) => {
+		try {
+			if (!reminder_id) return;
+			await remindersService.delete(reminder_id);
+			await fetchReminders(id);
+		} catch (err) {
+			console.log(`ERRO AO DELETAR LEMBRETE: ${err}`);
+		}
+	};
+
 	useEffect(() => {
 		if (!id) return;
 		fetchReminders(id);
 	}, [id]);
 
-	return { loading, newReminder, setNewReminder, addReminder, reminders };
+	return {
+		loading,
+		newReminder,
+		setNewReminder,
+		addReminder,
+		reminders,
+		deleteReminder,
+	};
 };
 
 export default useReminders;
