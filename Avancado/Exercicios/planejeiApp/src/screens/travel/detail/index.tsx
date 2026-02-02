@@ -20,11 +20,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 interface ITravelDetialScreenProps {
 	loading: boolean;
 	travel: TTravel | null;
+	handleDeleteTravel: () => Promise<void>;
 }
 
 export function TravelDetailScreen({
 	loading,
 	travel,
+	handleDeleteTravel,
 }: ITravelDetialScreenProps) {
 	if (loading || !travel) return <Index />;
 
@@ -103,7 +105,10 @@ export function TravelDetailScreen({
 							{travel?.hotel_address}
 						</Text>
 
-						<Pressable style={styles.deleteButton}>
+						<Pressable
+							onPress={async () => await handleDeleteTravel()}
+							style={styles.deleteButton}
+						>
 							<Text style={styles.deleteButtonText}>
 								Excluir viagem
 							</Text>

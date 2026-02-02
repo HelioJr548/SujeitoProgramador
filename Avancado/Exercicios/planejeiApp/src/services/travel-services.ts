@@ -55,4 +55,13 @@ export const travelServices = {
 
 		return data;
 	},
+
+	deleteTravelById: async (travel_id: string) => {
+		const { error } = await supabase
+			.from('travels')
+			.delete()
+			.eq('id', travel_id);
+
+		if (error) throw error;
+	},
 };
