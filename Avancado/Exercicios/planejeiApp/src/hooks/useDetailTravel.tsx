@@ -1,6 +1,6 @@
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { TTravel } from '../services/travel-services';
+import { travelServices, TTravel } from '../services/travel-services';
 const useDetailTravel = () => {
 	const [travel, setTravel] = useState<null | TTravel>(null);
 	const [loading, setLoading] = useState(true);
@@ -11,15 +11,19 @@ const useDetailTravel = () => {
 		const fetchData = async () => {
 			try {
 				setLoading(true);
+				const data = await travelServices.getTravelById(id);
+				setTravel(data);
+				setLoading(false);
 			} catch (err) {
 				console.log(`ERRO AO BUSCAR DETALHE: ${err}`);
+				setLoading(false);
 			}
 		};
 
 		fetchData();
-	}, []);
+	}, [id]);
 
-	return {};
+	return { travel, loading };
 };
 
 export default useDetailTravel;

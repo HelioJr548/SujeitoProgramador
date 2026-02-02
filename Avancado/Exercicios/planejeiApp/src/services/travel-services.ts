@@ -44,11 +44,15 @@ export const travelServices = {
 		return data;
 	},
 
-	getTravelById: async (travel_id: string) => {
-		const {} = await supabase
+	getTravelById: async (travel_id: string): Promise<TTravel> => {
+		const { data, error } = await supabase
 			.from('travels')
 			.select('*')
 			.eq('id', travel_id)
 			.single();
+
+		if (error) throw error;
+
+		return data;
 	},
 };
