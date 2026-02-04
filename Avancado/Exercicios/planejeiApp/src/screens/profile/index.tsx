@@ -36,7 +36,7 @@ export function ProfileScreen({
 
 					<View style={styles.cardInfo}>
 						<Text style={styles.label}>Conta criada em:</Text>
-						<Text style={styles.value}>03/02/2026</Text>
+						<Text style={styles.value}>{profile?.createdAt}</Text>
 					</View>
 				</View>
 				<Pressable
