@@ -38,9 +38,7 @@ const useSignup = () => {
 			await authService.signUp(data.email, data.password, data.username);
 			router.replace('/(panel)/home/page');
 		} catch (err) {
-			console.log('FALHA AO CRIAR USUARIO');
-
-			console.log(err);
+			console.error('FALHA AO CRIAR USUARIO: ', err);
 		}
 	};
 

@@ -25,16 +25,20 @@ export default function HomeScreen({ travels, loading }: IHomeScreenProps) {
 	const [nextTravel, ...otherTravels] = travels;
 	if (loading) return <Index />;
 
-	const today = new Date();
-	const startDate = parseISO(nextTravel!.start_date);
-	const endDate = parseISO(nextTravel!.end_date);
+	let statusMessage: string = '';
 
-	const daysLeft = differenceInCalendarDays(startDate, today);
-	const statusMessage = isBefore(today, startDate)
-		? daysLeft === 1
-			? 'Sua viagem é amanhã'
-			: `Faltam ${daysLeft} dias para sua viagem`
-		: 'Viagem em andamento';
+	if (nextTravel) {
+		const today = new Date();
+		const startDate = parseISO(nextTravel!.start_date);
+		const endDate = parseISO(nextTravel!.end_date);
+
+		const daysLeft = differenceInCalendarDays(startDate, today);
+		statusMessage = isBefore(today, startDate)
+			? daysLeft === 1
+				? 'Sua viagem é amanhã'
+				: `Faltam ${daysLeft} dias para sua viagem`
+			: 'Viagem em andamento';
+	}
 
 	const formatDateRange = (start: string, end: string) => {
 		const startDate = format(parseISO(start), 'dd MMM', { locale: ptBR });
@@ -93,6 +97,12 @@ export default function HomeScreen({ travels, loading }: IHomeScreenProps) {
 						</Link>
 					</View>
 				</View>
+
+				{travels && travels.length === 0 && (
+					<Text style={styles.warningTravel}>
+						Nenhuma viagem cadastrada...
+					</Text>
+				)}
 
 				{nextTravel && (
 					<View style={styles.featuredCard}>
@@ -156,6 +166,7 @@ export default function HomeScreen({ travels, loading }: IHomeScreenProps) {
 }
 
 const styles = StyleSheet.create({
+	warningTravel: { color: colors.gray100 },
 	safeArea: {
 		flex: 1,
 		backgroundColor: colors.zinc,
@@ -166,7 +177,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		marginBottom: 24,
+		marginBottom: 16,
 	},
 	headerTitle: { color: colors.orange, fontSize: 30, fontWeight: '600' },
 	headerActions: { flexDirection: 'row-reverse', gap: 10 },

@@ -27,9 +27,7 @@ const useSignin = () => {
 			await authService.signIn(data.email, data.password);
 			router.replace('/(panel)/home/page');
 		} catch (err) {
-			console.log('FALHA AO LOGAR');
-
-			console.log(err);
+			console.error('FALHA AO LOGAR: ', err);
 		}
 	};
 

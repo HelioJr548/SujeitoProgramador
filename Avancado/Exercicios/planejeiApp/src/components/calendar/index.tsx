@@ -20,8 +20,6 @@ export function DatePickerInput({
 
 	function handleDayPress(day: { dateString: string }) {
 		onChange(day.dateString);
-		console.log(day.dateString);
-
 		setModalVisible(false);
 	}
 

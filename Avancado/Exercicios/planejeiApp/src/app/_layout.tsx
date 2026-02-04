@@ -13,7 +13,6 @@ export default function RootLayout() {
 				return;
 			}
 
-			console.log('NÂO LOGADO');
 			router.replace('/(auth)/signin/page');
 		});
 	}, []);

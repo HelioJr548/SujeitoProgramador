@@ -1,11 +1,11 @@
 import Index from '@/src/app';
+import { NavBar } from '@/src/components/NavBar';
 import colors from '@/src/constants/colors';
 import { TReminder } from '@/src/services/reminders-service';
 import { TTravel } from '@/src/services/travel-services';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Link } from 'expo-router';
 import {
 	Platform,
 	Pressable,
@@ -56,20 +56,10 @@ export function TravelDetailScreen({
 				barStyle={'light-content'}
 			/>
 			<View style={styles.container}>
-				<View style={styles.row}>
-					<Link href={'/(panel)/home/page'}>
-						<Feather
-							name="arrow-left"
-							color={colors.white}
-							size={40}
-						/>
-					</Link>
-
-					<Text style={styles.title}>Planejei</Text>
-				</View>
+				<NavBar title={'Planejei'} />
 
 				<View>
-					<Text style={[styles.heading, { marginTop: 14 }]}>
+					<Text style={styles.heading}>
 						Detalhes da sua viagem para
 					</Text>
 					<Text
@@ -246,10 +236,4 @@ const styles = StyleSheet.create({
 		padding: 16,
 		flex: 1,
 	},
-	row: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		gap: 14,
-	},
-	title: { fontSize: 30, color: colors.orange, fontWeight: '600' },
 });

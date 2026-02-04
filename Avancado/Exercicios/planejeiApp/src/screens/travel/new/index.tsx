@@ -1,8 +1,7 @@
 import { DatePickerInput } from '@/src/components/calendar';
+import { NavBar } from '@/src/components/NavBar';
 import colors from '@/src/constants/colors';
 import { TTravelFormData } from '@/src/hooks/useCreateTravel';
-import { Feather } from '@expo/vector-icons';
-import { Link } from 'expo-router';
 import {
 	Control,
 	Controller,
@@ -50,17 +49,7 @@ export default function NewTravelScreen({
 				barStyle={'light-content'}
 			/>
 			<ScrollView style={styles.container}>
-				<View style={styles.row}>
-					<Link href={'/(panel)/home/page'}>
-						<Feather
-							name="arrow-left"
-							color={colors.white}
-							size={40}
-						/>
-					</Link>
-
-					<Text style={styles.title}>Planejei</Text>
-				</View>
+				<NavBar title={'Planejei'} />
 
 				<Text style={styles.subTitle}>
 					Vamos cadastrar sua próxima viagem
@@ -207,15 +196,9 @@ const styles = StyleSheet.create({
 		padding: 16,
 		flex: 1,
 	},
-	row: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		gap: 14,
-	},
-	title: { fontSize: 30, color: colors.orange, fontWeight: '600' },
 	subTitle: {
 		fontSize: 28,
-		marginVertical: 14,
+		marginBottom: 14,
 		color: colors.white,
 		fontWeight: '500',
 	},

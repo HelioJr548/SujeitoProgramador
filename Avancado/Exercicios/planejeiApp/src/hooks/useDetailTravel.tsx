@@ -16,7 +16,7 @@ const useDetailTravel = () => {
 				setTravel(data);
 				setLoading(false);
 			} catch (err) {
-				console.log(`ERRO AO BUSCAR DETALHE: ${err}`);
+				console.error(`ERRO AO BUSCAR DETALHE: `, err);
 				setLoading(false);
 			}
 		};
@@ -29,7 +29,7 @@ const useDetailTravel = () => {
 			await travelServices.deleteTravelById(id);
 			router.replace('/(panel)/home/page');
 		} catch (err) {
-			console.log(`ERRO AO DELETAR: ${err}`);
+			console.error(`ERRO AO DELETAR: `, err);
 		}
 	};
 

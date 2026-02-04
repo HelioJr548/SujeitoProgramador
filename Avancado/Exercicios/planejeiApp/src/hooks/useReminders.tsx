@@ -17,7 +17,7 @@ const useReminders = () => {
 			setLoading(false);
 		} catch (err) {
 			setLoading(true);
-			console.log(`ERRO AO BUSCAR LEMBRETES: ${err}`);
+			console.error(`ERRO AO BUSCAR LEMBRETES: `, err);
 		}
 	};
 
@@ -33,10 +33,8 @@ const useReminders = () => {
 			setNewReminder('');
 			await fetchReminders(id);
 		} catch (err) {
-			console.log(`ERRO AO CADASTRAR LEMBRETE: ${err}`);
+			console.error(`ERRO AO CADASTRAR LEMBRETE:`, err);
 		}
-
-		console.log(`ADICIONAR LEMBRETE: ${newReminder}`);
 	};
 
 	const deleteReminder = async (reminder_id: string) => {
@@ -45,7 +43,7 @@ const useReminders = () => {
 			await remindersService.delete(reminder_id);
 			await fetchReminders(id);
 		} catch (err) {
-			console.log(`ERRO AO DELETAR LEMBRETE: ${err}`);
+			console.error(`ERRO AO DELETAR LEMBRETE: `, err);
 		}
 	};
 

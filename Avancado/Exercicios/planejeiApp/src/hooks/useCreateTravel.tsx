@@ -57,8 +57,7 @@ const useCreateTravel = () => {
 			reset();
 			router.replace('/(panel)/home/page');
 		} catch (err) {
-			console.log('ERROR AO CADASTRAR VIAGEM');
-			console.log(err);
+			console.error('ERROR AO CADASTRAR VIAGEM: ', err);
 		}
 	};
 

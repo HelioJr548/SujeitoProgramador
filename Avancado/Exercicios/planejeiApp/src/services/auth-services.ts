@@ -33,12 +33,13 @@ export const authService = {
 	},
 
 	signOut: async () => {
-		const error = await supabase.auth.signOut();
-
-		if (error) {
-			throw error;
+		try {
+			const { error } = await supabase.auth.signOut({ scope: 'local' });
+			if (error) throw error;
+			return true;
+		} catch (err) {
+			console.warn('Logout warning ignorado:', err);
+			return true; // Continua mesmo com warning
 		}
-
-		return true;
 	},
 };

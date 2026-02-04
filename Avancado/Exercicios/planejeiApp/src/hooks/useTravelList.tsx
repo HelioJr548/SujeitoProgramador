@@ -24,7 +24,7 @@ const useTravelList = () => {
 
 				setLoading(false);
 			} catch (err) {
-				console.log('FALHA AO BUSCAR DADOS DAS VIAGENS');
+				console.error('FALHA AO BUSCAR DADOS DAS VIAGENS: ', err);
 				setLoading(true);
 			}
 		};
