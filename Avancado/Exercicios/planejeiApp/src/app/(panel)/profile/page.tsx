@@ -1,13 +1,10 @@
 import useProfile from '@/src/hooks/useProfile';
-import { Button, Text, View } from 'react-native';
+import { ProfileScreen } from '@/src/screens/profile';
 
 export default function Profile() {
-	const { logout } = useProfile();
+	const { logout, loading, profile } = useProfile();
 
 	return (
-		<View>
-			<Text>Página Perfil</Text>
-			<Button title="Sair" onPress={logout} />
-		</View>
+		<ProfileScreen logout={logout} loading={loading} profile={profile} />
 	);
 }
