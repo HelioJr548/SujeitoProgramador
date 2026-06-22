@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 function App() {
 	const [tarefas, setTarefas] = useState(() => {
@@ -8,7 +8,7 @@ function App() {
 	const [input, setInput] = useState('');
 	const [erro, setErro] = useState('');
 
-	function addTarefa() {
+	const addTarefa = useCallback(() => {
 		if (!input.trim()) {
 			setErro('Digite uma tarefa');
 			return;
@@ -22,7 +22,7 @@ function App() {
 		setErro('');
 		setTarefas([...tarefas, input]);
 		setInput('');
-	}
+	}, [input, tarefas]);
 
 	useEffect(() => {
 		localStorage.setItem('tarefas', JSON.stringify(tarefas));
@@ -55,7 +55,17 @@ function App() {
 				/>
 				<button type="submit">Add tarefa</button>
 			</form>
-			<strong>Voce tem {totalTarefas}</strong>
+			<strong>
+				{() => {
+					let mensagem;
+					if (totalTarefas === 0) {
+						mensagem = 'Não há tarefas';
+					} else {
+						mensagem = `Voce tem ${totalTarefas} tarefa${totalTarefas > 1 ? 's' : ''}`;
+					}
+					return mensagem;
+				}}
+			</strong>
 		</div>
 	);
 }
