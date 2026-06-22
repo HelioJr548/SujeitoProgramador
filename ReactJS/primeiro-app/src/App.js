@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 function App() {
 	const [tarefas, setTarefas] = useState(() => {
@@ -28,6 +28,8 @@ function App() {
 		localStorage.setItem('tarefas', JSON.stringify(tarefas));
 	}, [tarefas]);
 
+	const totalTarefas = useMemo(() => tarefas.length, [tarefas]);
+
 	return (
 		<div>
 			<ul>
@@ -53,6 +55,7 @@ function App() {
 				/>
 				<button type="submit">Add tarefa</button>
 			</form>
+			<strong>Voce tem {totalTarefas}</strong>
 		</div>
 	);
 }
