@@ -1,71 +1,46 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+// https://sujeitoprogramador.com/rn-api/?api=posts
+
+import { useEffect, useState } from 'react';
 
 function App() {
-	const [tarefas, setTarefas] = useState(() => {
-		const tarefasStorage = localStorage.getItem('tarefas');
-		return tarefasStorage ? JSON.parse(tarefasStorage) : [];
-	});
-	const [input, setInput] = useState('');
-	const [erro, setErro] = useState('');
-
-	const addTarefa = useCallback(() => {
-		if (!input.trim()) {
-			setErro('Digite uma tarefa');
-			return;
-		}
-
-		if (tarefas.includes(input)) {
-			setErro('Tarefa já existente');
-			return;
-		}
-
-		setErro('');
-		setTarefas([...tarefas, input]);
-		setInput('');
-	}, [input, tarefas]);
+	const [nutri, setNutri] = useState([]);
 
 	useEffect(() => {
-		localStorage.setItem('tarefas', JSON.stringify(tarefas));
-	}, [tarefas]);
+		function loadApi() {
+			let url = 'https://sujeitoprogramador.com/rn-api/?api=posts';
+			fetch(url)
+				.then((res) => res.json())
+				.then((json) => {
+					setNutri(json);
+				});
+		}
 
-	const totalTarefas = useMemo(() => tarefas.length, [tarefas]);
+		loadApi();
+	}, []);
 
 	return (
-		<div>
-			<ul>
-				{tarefas.map((tarefa, index) => (
-					<li key={index}>{tarefa}</li>
-				))}
-			</ul>
+		<div className="container">
+			<header>
+				<strong>React Nutri</strong>
+			</header>
 
-			{erro && <p style={{ color: 'red' }}>{erro}</p>}
+			{nutri.map((item) => {
+				return (
+					<article key={item.id} className="post">
+						<strong className="titulo">{item.titulo}</strong>
+						<img
+							src={item.capa}
+							alt={item.titulo}
+							className="capa"
+						/>
+						<p className="subtitulo">{item.subtitulo}</p>
 
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					addTarefa();
-				}}
-			>
-				<input
-					value={input}
-					onChange={(e) => {
-						setInput(e.target.value);
-						setErro(''); // ← Limpa erro ao digitar
-					}}
-				/>
-				<button type="submit">Add tarefa</button>
-			</form>
-			<strong>
-				{() => {
-					let mensagem;
-					if (totalTarefas === 0) {
-						mensagem = 'Não há tarefas';
-					} else {
-						mensagem = `Voce tem ${totalTarefas} tarefa${totalTarefas > 1 ? 's' : ''}`;
-					}
-					return mensagem;
-				}}
-			</strong>
+						<a href={item.categoria} className="botao">
+							Acessar
+						</a>
+					</article>
+				);
+			})}
 		</div>
 	);
 }
