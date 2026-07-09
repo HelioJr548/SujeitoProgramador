@@ -7,6 +7,8 @@ function Home() {
 			<p>Seja bem-vindo</p>
 			<Link to="/sobre">Sobre</Link> <br />
 			<Link to="/contato">Contato</Link>
+			<hr />
+			<Link to="/produto/123">Produto 123</Link>
 		</div>
 	);
 }
